@@ -1,4 +1,4 @@
-package com.uh.fuelratecheck;
+package group9.group9;
 
 import java.util.List;
 
@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
-    @Autowired
-    private ClientRepository clientRepository;
+
 
     @GetMapping("/login")
 	public String login(Model model) {
@@ -26,24 +25,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute LoginModel login, HttpServletResponse response) {
-        List<ClientEntity> clients = clientRepository.findByUsername(login.getUsername());
+    
 
-        if (clients.isEmpty()) {
-            return "redirect:/login";
-        }
-
-        ClientEntity client = clients.get(0);
-
-        String hash = PasswordEncryption.hash(login.getPassword());
-
-        if (!client.getPassword().equals(hash)) {
-            return "redirect:/login";
-        }
-
-        Cookie cookie = new Cookie("user-id", client.getId().toString());
-        response.addCookie(cookie);
-
-        return "redirect:/fuelhistory";
+        return "redirect:/login";
     }
 
 }
