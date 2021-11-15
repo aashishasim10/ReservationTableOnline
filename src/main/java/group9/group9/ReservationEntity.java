@@ -1,6 +1,8 @@
 package group9.group9;
+@Entity
+public class ReservationEntity {
 
-public class ReservationModel {
+    private int id;
     private String fullName;
     private String phoneNumber;
     private String email;
@@ -9,6 +11,13 @@ public class ReservationModel {
     private int numOfGuests;
     private boolean isHoliday;
 
+
+    public int getId(){
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getFullName() {
         return fullName;
     }
@@ -51,8 +60,4 @@ public class ReservationModel {
     public void setHoliday(boolean isHoliday) {
         this.isHoliday = isHoliday;
     }
-
-    
-
-
 }
