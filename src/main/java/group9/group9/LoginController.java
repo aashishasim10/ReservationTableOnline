@@ -30,4 +30,10 @@ public class LoginController {
         return "redirect:/login";
     }
 
+    @PostMapping("/login")
+    public String (@ModelAttribute LoginModel login, HttpServletResponse response) {
+    
+
+        return "redirect:/login";
+    }
 }
