@@ -19,8 +19,8 @@ public class ReservationController {
     @GetMapping("/reservation")
 	public String reservation(Model model) {
         
-        ReservationModel reservationModel = new ReservationModel();
-        model.addAttribute("registration", reservationModel);
+        // ReservationModel reservationModel = new ReservationModel();
+        // model.addAttribute("registration", reservationModel);
         return "reservation";
 	}
 
