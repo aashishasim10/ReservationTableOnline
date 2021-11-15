@@ -1,8 +1,12 @@
 package group9.group9;
+
 @Entity
 public class ReservationEntity {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 
-    private int id;
+    private Integer id;
+    private Integer userid;
     private String fullName;
     private String phoneNumber;
     private String email;
