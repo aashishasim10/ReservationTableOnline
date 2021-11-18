@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PaymentController {
    
-@Autowired 
-PaymentRepository pr;
+// @Autowired 
+// PaymentRepository pr;
 
-@Autowired 
-PaymentEntity pe;
+// @Autowired 
+// PaymentEntity pe;
 
  @RequestMapping(value="/cardInformation",method=RequestMethod.POST)   
 public String savePayment(@ModelAttribute("paymentModel")PaymentModel payment,ModelMap m){
    
-    pe.setCardName(payment.getCardName());
+    // pe.setCardName(payment.getCardName());
        //pr.save(payment);
 
 
