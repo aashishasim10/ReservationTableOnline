@@ -19,12 +19,12 @@ public class LoginController {
     @GetMapping("/login")
 	public String login(Model model) {
         LoginModel loginModel = new LoginModel();
-        model.addAttribute("login", loginModel);
+        model.addAttribute("loginForm", loginModel);
         return "login";
 	}
 
     @PostMapping("/login")
-    public String loginSubmit(@ModelAttribute LoginModel login, HttpServletResponse response) {
+    public String loginSubmit(@ModelAttribute LoginModel loginForm, HttpServletResponse response) {
     
 
         return "redirect:/login";

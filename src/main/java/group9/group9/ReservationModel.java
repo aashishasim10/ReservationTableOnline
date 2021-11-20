@@ -6,8 +6,8 @@ public class ReservationModel {
     private String email;
     private String date;
     private String time;
-    private int numOfGuests;
-    private boolean isHoliday;
+    private String numOfGuests;
+    private String isHoliday;
 
     public String getFullName() {
         return fullName;
@@ -39,16 +39,16 @@ public class ReservationModel {
     public void setTime(String time) {
         this.time = time;
     }
-    public int getNumOfGuests() {
+    public String getNumOfGuests() {
         return numOfGuests;
     }
-    public void setNumOfGuests(int numOfGuests) {
+    public void setNumOfGuests(String numOfGuests) {
         this.numOfGuests = numOfGuests;
     }
-    public boolean isHoliday() {
+    public String isHoliday() {
         return isHoliday;
     }
-    public void setHoliday(boolean isHoliday) {
+    public void setHoliday(String isHoliday) {
         this.isHoliday = isHoliday;
     }
 

@@ -19,13 +19,13 @@ public class ReservationController {
     @GetMapping("/reservation")
 	public String reservation(Model model) {
         
-        // ReservationModel reservationModel = new ReservationModel();
-        // model.addAttribute("registration", reservationModel);
+        ReservationModel reservationModel = new ReservationModel();
+        model.addAttribute("reservationForm", reservationModel);
         return "reservation";
 	}
 
     @PostMapping("/reservation")
-    public String reservationSubmit(@ModelAttribute LoginModel login, HttpServletResponse response) {
+    public String reservationSubmit(@ModelAttribute ReservationModel reservationForm, HttpServletResponse response) {
     
 
         return "redirect:/reservation";
