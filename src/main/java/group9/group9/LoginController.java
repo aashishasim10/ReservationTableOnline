@@ -11,9 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
+
+  //@Autowired
+  //UserEntity userEntity;
+
+  @Autowired
+  UserRepository userRepository;
+
 
 
     @GetMapping("/login")
@@ -23,11 +31,63 @@ public class LoginController {
         return "login";
 	}
 
+<<<<<<< HEAD
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute LoginModel loginModel, HttpServletResponse response) {
-    
+=======
 
-        return "redirect:/login";
+
+
+    /// This method check the user is in system 
+    @PostMapping("/verifiedLogin")
+    public String loginSubmit(@ModelAttribute("loginModel")LoginModel loginModel,Model model) {
+        UserEntity userEntity= new UserEntity();
+        String email="";
+        String pass="";
+>>>>>>> Aashish
+    
+     try{
+     userEntity = userRepository.findByUsername(loginModel.getUsername());
+     email=userEntity.getUsername();
+     pass=userEntity.getPassword();
+
+      
+     if(pass.equals(loginModel.getPassword())){
+        return "displayAvailableTable";
+     }
+
+     }
+     catch(Exception e){
+
+     String invalid="Your Username or Password didnot Match ";
+     model.addAttribute("msg", invalid);
+     return "login";
+
+     }
+     if(pass.equals(loginModel.getPassword())&& email.equals(loginModel.getUsername())){
+        return "displayAvailableTable";
+     }
+     else{
+         return "login";
+     }
+
+      
     }
 
+<<<<<<< HEAD
+=======
+
+    
+
+
+
+
+
+    // @PostMapping("/login")
+    // public String (@ModelAttribute LoginModel login, HttpServletResponse response) {
+    
+
+    //     return "redirect:/login";
+    // }
+>>>>>>> Aashish
 }

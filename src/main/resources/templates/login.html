@@ -3,17 +3,32 @@
 <head> 
     <title>Getting Started: Serving Web Content</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 </head>
 <body>
+<<<<<<< HEAD
     <form action="#" th:action="@{/login}" th:object="${loginModel}" method="post">
         <h>Login</h><br>
         <label>User name:</label><br>
         <input type="text" maxlength="50" th:field="*{username}" /><br>
         <label>Password:</label><br>
         <input type="password" th:field="*{password}" /><br>
+=======
+    <center><pre>
+    <form action="#" th:action="@{/verifiedLogin}" th:object="${loginForm}" method="post">
+        <h1>Login</h1><br>
+        <label>User name:</label>
+        <input type="text" maxlength="50" th:field="*{username}" />
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" />
+>>>>>>> Aashish
         <input type="submit" value="Login" />
     </form>
-        <a href="/registration"><button>Register Now</button></a>
-        <a href="/reservation"><button>Continue as a Guest</button></a>
+        <a href="/registration"><button>Register</button></a>
+        <a href="/displayTable"><button>Continue as a Guest</button></a>
+    </pre>
+    </center>
 </body>
 </html>
