@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 @Controller
 public class ReservationHistoryController {
     @Autowired
-    //private FuelQuoteRepository fuelQuoteRepository;
+    private ReservationRepository reservationRepository;
     @GetMapping("/reservationhistory")
 
     public String history(Model model, HttpServletRequest request) {
@@ -29,7 +29,7 @@ public class ReservationHistoryController {
                 break;
             }
         }
-        //model.addAttribute("quotes", fuelQuoteRepository.findByUserid(Integer.parseInt(userid)));
+        model.addAttribute("quotes", ReservationRepository.findByUserid(Integer.parseInt(userid)));
         return "reservationHistory";
     }
 }
