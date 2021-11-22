@@ -40,14 +40,19 @@ public class LoginController {
         UserEntity userEntity= new UserEntity();
         String email="";
         String pass="";
+        boolean isAdmin=false;
     
      try{
      userEntity = userRepository.findByUsername(loginModel.getUsername());
      email=userEntity.getUsername();
      pass=userEntity.getPassword();
+     isAdmin=userEntity.isAdmin();
 
       
      if(pass.equals(loginModel.getPassword())){
+         if(isAdmin){
+             return "addTable";
+         }
         return "displayAvailableTable";
      }
 
@@ -60,6 +65,9 @@ public class LoginController {
 
      }
      if(pass.equals(loginModel.getPassword())&& email.equals(loginModel.getUsername())){
+        if(isAdmin){
+            return "addTable";
+        }
         return "displayAvailableTable";
      }
      else{
