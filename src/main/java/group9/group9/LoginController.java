@@ -41,10 +41,10 @@ public class LoginController {
             return "redirect:/login";
         }
 
-        Cookie cookie = new Cookie("user-id", user.getUserId().toString());
+        Cookie cookie = new Cookie("user-id", user.getId().toString());
         response.addCookie(cookie);
 
-        return "redirect:/fuelhistory";
+        return "redirect:/reservationhistory";
     }
 
 }

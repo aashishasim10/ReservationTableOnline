@@ -28,6 +28,14 @@ public class ReservationEntity {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getUserId(){
+        return id;
+    }
+    public void setUserId(int userid) {
+        this.userid = userid;
+    }
+
     public String getFullName() {
         return fullName;
     }

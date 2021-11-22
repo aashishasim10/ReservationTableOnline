@@ -7,7 +7,7 @@ public class UserEntity {
   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) 
-     private Integer userId;
+     private Integer id;
 
      private String username;
 
@@ -15,12 +15,12 @@ public class UserEntity {
 
      private boolean isAdmin;
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -49,7 +49,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity [isAdmin=" + isAdmin + ", password=" + password + ", user_id=" + userId + ", username="
+        return "UserEntity [isAdmin=" + isAdmin + ", password=" + password + ", user_id (aka. id) =" + id + ", username="
                 + username + "]";
     }
 

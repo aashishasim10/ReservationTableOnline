@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegistrationController {
     @Autowired
-    private UserInfoRepository userInfoRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/registration")
 	public String registration(Model model) {
@@ -30,19 +30,19 @@ public class RegistrationController {
             return "redirect:/registration";
         }
 
-        List<UserEntity> clients = userInfoRepository.findByUsername(registration.getUsername());
+        List<UserEntity> clients = userRepository.findByUsername(registration.getUsername());
 
         if (!clients.isEmpty()) {
             return "redirect:/registration";
         }
 
         UserEntity n = new UserEntity();
-        n.setName(registration.getUsername());
+        n.setUsername(registration.getUsername());
 
         String hash = PasswordEncryption.hash(registration.getPassword());
 
         n.setPassword(hash);
-        n = userInfoRepository.save(n);
+        n = userRepository.save(n);
 
         Cookie cookie = new Cookie("user-id", n.getId().toString());
         response.addCookie(cookie);

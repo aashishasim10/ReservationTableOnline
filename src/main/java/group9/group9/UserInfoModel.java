@@ -2,7 +2,6 @@ package group9.group9;
 
 public class UserInfoModel {
   
-    
     private  String fullname;
 
     private  String email;
