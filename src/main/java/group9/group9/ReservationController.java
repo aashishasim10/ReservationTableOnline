@@ -20,13 +20,28 @@ public class ReservationController {
 	public String reservation(Model model) {
         
         ReservationModel reservationModel = new ReservationModel();
-        model.addAttribute("reservationForm", reservationModel);
+        model.addAttribute("reservationModel", reservationModel);
+
         return "reservation";
 	}
 
     @PostMapping("/reservation")
-    public String reservationSubmit(@ModelAttribute ReservationModel reservationForm, HttpServletResponse response) {
-    
+    public String reservationSubmit(@ModelAttribute ReservationModel reservationModel, HttpServletResponse response) {
+        
+        /* input validation for reservation variable go here */
+
+        //Carry over variable from the Model to the Entity
+
+        ReservationEntity newReservationEntity = new ReservationEntity();
+
+        newReservationEntity.setFullName(reservationModel.getFullName());
+        newReservationEntity.setPhoneNumber(reservationModel.getPhoneNumber());
+        newReservationEntity.setEmail(reservationModel.getEmail());
+        newReservationEntity.setDate(reservationModel.getDate());
+        newReservationEntity.setTime(reservationModel.getTime());
+        newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
+        //also add isHoliday info here
+
 
         return "redirect:/reservation";
     }
