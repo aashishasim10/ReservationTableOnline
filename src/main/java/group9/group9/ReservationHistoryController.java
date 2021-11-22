@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 public class ReservationHistoryController {
     @Autowired
     //private FuelQuoteRepository fuelQuoteRepository;
-    @GetMapping("/fuelhistory")
+    @GetMapping("/reservation")
 
     public String history(Model model, HttpServletRequest request) {
         Cookie cookie[] = request.getCookies();
