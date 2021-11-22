@@ -4,7 +4,10 @@
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/LoginController.java
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/TableEntity.java
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/UserEntity.java
+<<<<<<< HEAD
+=======
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/ReservationRepository.java
+>>>>>>> b8a7711cb20b3d3b7b1bf051e759eb820c41cd6f
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/HolidayEntity.java
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/ReservationController.java
 /Users/Akif/Documents/GitHub/group9/src/main/java/group9/group9/ReservationEntity.java
