@@ -1,0 +1,87 @@
+
+
+<!DOCTYPE HTML>
+<html >
+<head> 
+    <title>Registration page </title> 
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <center><pre><!--
+
+
+        ///Got Error so I am using html file below // 
+        <form  action="#" th:action="@{/register}"  method="post" th:object="${userInfoModel}">
+
+            <label>Full Name:</label>
+            <input type="text" th:field="*{fullname}" />
+        
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" />
+        
+        
+            <label>Phone Number:</label>
+            <input type="text" maxlength="10" th:field="*{phone}" />
+        
+        
+            <label>Address 1:</label>
+            <input type="text" th:field="*{address1}" />
+        
+            <label>Address 2:</label>
+            <input type="text" th:field="*{address2}" />
+            
+        
+            <label>City :</label>
+            <input type="text" th:field="*{city}" />
+        
+        
+            <label>State:</label>
+            <input type="text" th:field="*{state}" />
+            
+            <label>ZipCode:</label>
+            <input type="text" maxlength="8" th:field="*{zipcode}" />
+            
+                
+            <input type="submit" value="Register" />
+        
+        
+        
+        </form>
+-->
+
+  <form action="/register" method="post">
+
+<label>Your fullName :</label>
+<input type="text" name="fullname" placeholder="Your Full Name"/>
+
+<label>Your Email :</label>
+<input type="email"  name="email" placeholder="Your Personal Email"/>
+
+<label>Your Phone Number  :</label>
+<input type="text" maxlength="10" name="phone" placeholder="Your Personal Number"/>
+
+<label>Address 1  :</label>
+<input type="text" name="address1" placeholder="Street Name"/>
+
+<label>Address 2  :</label>
+<input type="text" name="address2" placeholder="apt/building"/>
+
+<label>City  :</label>
+<input type="text" name="city" placeholder="City Name"/>
+
+<label>State :</label>
+<input type="text" name="state" placeholder="State Name "/>
+
+<label>ZipCode :</label>
+<input type="text" maxlength="10" name="zipcode" placeholder="Zipcode"/>
+
+<input type="submit" value="Register"/>
+
+
+  </form>
+
+    </pre>
+    </center>
+</body>
+</html>

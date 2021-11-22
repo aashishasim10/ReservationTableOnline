@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
@@ -23,12 +24,19 @@ public class LoginController {
         return "login";
 	}
 
-    @PostMapping("/login")
-    public String loginSubmit(@ModelAttribute LoginModel loginForm, HttpServletResponse response) {
+    /*@PostMapping("/verifiedlogin")
+    public String loginSubmit(@ModelAttribute("loginModel")LoginModel loginModel) {
+     
+
+        return "displayAvailableTable";
+    }*/
+
+
     
 
-        return "redirect:/login";
-    }
+
+
+
 
     // @PostMapping("/login")
     // public String (@ModelAttribute LoginModel login, HttpServletResponse response) {
