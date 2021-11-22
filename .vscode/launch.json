@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Group9Application<group9>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "group9.group9.Group9Application",
+            "projectName": "group9",
+            "args": ""
+        }
+    ]
+}
