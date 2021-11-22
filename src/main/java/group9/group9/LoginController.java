@@ -20,6 +20,8 @@ public class LoginController {
 	public String login(Model model) {
         LoginModel loginModel = new LoginModel();
         model.addAttribute("loginModel", loginModel);
+
+        
         return "login";
 	}
 
