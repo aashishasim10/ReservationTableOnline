@@ -8,22 +8,12 @@
 
 </head>
 <body>
-<<<<<<< HEAD
     <form action="#" th:action="@{/login}" th:object="${loginModel}" method="post">
         <h>Login</h><br>
         <label>User name:</label><br>
         <input type="text" maxlength="50" th:field="*{username}" /><br>
         <label>Password:</label><br>
         <input type="password" th:field="*{password}" /><br>
-=======
-    <center><pre>
-    <form action="#" th:action="@{/verifiedLogin}" th:object="${loginForm}" method="post">
-        <h1>Login</h1><br>
-        <label>User name:</label>
-        <input type="text" maxlength="50" th:field="*{username}" />
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" />
->>>>>>> Aashish
         <input type="submit" value="Login" />
     </form>
         <a href="/registration"><button>Register</button></a>

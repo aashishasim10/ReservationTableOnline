@@ -11,18 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
-
-  //@Autowired
-  //UserEntity userEntity;
-
-  @Autowired
-  UserRepository userRepository;
-
-
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/login")
 	public String login(Model model) {
@@ -33,33 +26,26 @@ public class LoginController {
 
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute LoginModel loginModel, HttpServletResponse response) {
-    
-     try{
-     userEntity = userRepository.findByUsername(loginModel.getUsername());
-     email=userEntity.getUsername();
-     pass=userEntity.getPassword();
 
-      
-     if(pass.equals(loginModel.getPassword())){
-        return "displayAvailableTable";
-     }
+        List<UserEntity> users = userRepository.findByUsername(loginModel.getUsername());
 
-     }
-     catch(Exception e){
+        if (users.isEmpty()) {
+            return "redirect:/login";
+        }
 
-     String invalid="Your Username or Password didnot Match ";
-     model.addAttribute("msg", invalid);
-     return "login";
+        UserEntity user = users.get(0);
 
-     }
-     if(pass.equals(loginModel.getPassword())&& email.equals(loginModel.getUsername())){
-        return "displayAvailableTable";
-     }
-     else{
-         return "login";
-     }
+        String hash = PasswordEncryption.hash(loginModel.getPassword());
 
-      
+        if (!user.getPassword().equals(hash)) {
+            return "redirect:/login";
+        }
+
+        Cookie cookie = new Cookie("user-id", user.getUserId().toString());
+        response.addCookie(cookie);
+
+        return "redirect:/fuelhistory";
     }
 
 }
+

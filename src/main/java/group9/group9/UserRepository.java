@@ -1,11 +1,13 @@
 package group9.group9;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
-public interface UserRepository extends JpaRepository<UserEntity,Integer>{
+import org.springframework.data.repository.CrudRepository;
+
+//import com.uh.fuelratecheck.ClientEntity;
+
+public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     
+    List<UserEntity> findByUsername(String username);
 
-    public UserEntity findByUsername(String username);
 }
