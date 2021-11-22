@@ -15,6 +15,9 @@ public class UserInfoController {
 @Autowired
 UserInfoRepository userinfoRepo;
 
+@Autowired
+UserRepository userRepository;
+
 
 
 
@@ -39,9 +42,16 @@ public String registerUser(@ModelAttribute("userInfoModel")UserInfoModel userInf
    userInfoEntity.setCity(userInfo.getCity());
    userInfoEntity.setState(userInfo.getState());
    userInfoEntity.setZipcode(userInfo.getZipcode());
+   userInfoEntity.setPassword(userInfo.getPassword());
    userinfoRepo.save(userInfoEntity);
 
-    return "login";
+   UserEntity userEntity=new UserEntity();
+  userEntity.setUsername(userInfo.getEmail());
+   userEntity.setPassword(userInfo.getPassword());
+   userEntity.setAdmin(false);
+
+
+    return "displayAvailableTable";
 }
 
 

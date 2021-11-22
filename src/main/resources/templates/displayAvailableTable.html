@@ -14,11 +14,11 @@
   <div align="center">
 
   <table>
-      <tr>
+      <thead>
          <th >Table ID---</th>
          <th >Table Capacity---</th>
          <th >Is Table Reserved---</th>
-      </tr><br>
+        </thead><br>
 
       <tr th:each="list : ${list}">
           <td th:text="${list.getTable_id()}" ></td>
