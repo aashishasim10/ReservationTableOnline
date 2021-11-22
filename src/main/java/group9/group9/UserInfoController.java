@@ -46,11 +46,11 @@ public String registerUser(@ModelAttribute("userInfoModel")UserInfoModel userInf
    userinfoRepo.save(userInfoEntity);
 
    UserEntity userEntity=new UserEntity();
-  userEntity.setUsername(userInfo.getEmail());
+   userEntity.setUsername(userInfo.getEmail());
    userEntity.setPassword(userInfo.getPassword());
    userEntity.setAdmin(false);
 
-
+   userRepository.save(userEntity);
     return "displayAvailableTable";
 }
 

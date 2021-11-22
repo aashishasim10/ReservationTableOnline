@@ -9,7 +9,7 @@
 </head>
 <body>
     <center><pre>
-    <form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
+    <form action="#" th:action="@{/verifiedLogin}" th:object="${loginForm}" method="post">
         <h1>Login</h1><br>
         <label>User name:</label>
         <input type="text" maxlength="50" th:field="*{username}" />
