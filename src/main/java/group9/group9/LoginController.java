@@ -31,20 +31,8 @@ public class LoginController {
         return "login";
 	}
 
-<<<<<<< HEAD
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute LoginModel loginModel, HttpServletResponse response) {
-=======
-
-
-
-    /// This method check the user is in system 
-    @PostMapping("/verifiedLogin")
-    public String loginSubmit(@ModelAttribute("loginModel")LoginModel loginModel,Model model) {
-        UserEntity userEntity= new UserEntity();
-        String email="";
-        String pass="";
->>>>>>> Aashish
     
      try{
      userEntity = userRepository.findByUsername(loginModel.getUsername());
@@ -74,20 +62,4 @@ public class LoginController {
       
     }
 
-<<<<<<< HEAD
-=======
-
-    
-
-
-
-
-
-    // @PostMapping("/login")
-    // public String (@ModelAttribute LoginModel login, HttpServletResponse response) {
-    
-
-    //     return "redirect:/login";
-    // }
->>>>>>> Aashish
 }
