@@ -29,7 +29,7 @@ public class ReservationHistoryController {
                 break;
             }
         }
-        model.addAttribute("quotes", ReservationRepository.findByUserid(Integer.parseInt(userid)));
+        model.addAttribute("quotes", reservationRepository.findByUserid(Integer.parseInt(userid)));
         return "reservationHistory";
     }
 }
