@@ -7,7 +7,7 @@
 <body>
     <form action="#" th:action="@{/profile}" th:object="${temp}" method="post">
         <h>Profile</h><br>
-        <label>User name:</label><br>
+        <label>Full Name:</label><br>
         <input type="text" maxlength="50" th:field="*{fullName}" required="required" /><br>
         <label>Email:</label><br>
         <input type="email" th:field="*{email}" required="required"/><br>
