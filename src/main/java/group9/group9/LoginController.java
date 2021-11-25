@@ -53,7 +53,7 @@ public class LoginController {
          if(isAdmin){
              return "addTable";
          }
-        return "displayAvailableTable";
+        return "reservation";
      }
 
      }
@@ -68,7 +68,7 @@ public class LoginController {
         if(isAdmin){
             return "addTable";
         }
-        return "displayAvailableTable";
+        return "reservation";
      }
      else{
          return "login";
