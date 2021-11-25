@@ -21,6 +21,13 @@ public class HolidayEntity {
         this.holiday_id = holiday_id;
     }
 
+    public int getUserId(){
+        return id;
+    }
+    public void setUserId(int userid) {
+        this.userid = userid;
+    }
+
     public String getDate() {
         return date;
     }
