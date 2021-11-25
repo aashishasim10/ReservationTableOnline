@@ -22,8 +22,9 @@ UserRepository userRepository;
 
 
 @GetMapping(value= "/registration")
-public String showRegistrationPage(){
-   
+public String showRegistrationPage(Model model){
+    UserInfoModel userInfoModel=new UserInfoModel();
+    model.addAttribute("userInfoModel",userInfoModel);
     return "register";
 }
 

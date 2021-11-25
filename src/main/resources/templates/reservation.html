@@ -16,6 +16,35 @@ pricing module which will not be implemented in assignment 2.
       </tbody> -->
     </h2>
 
+    <div align="center">
+
+      <table>
+          <thead>
+             <th >Table ID---</th>
+             <th >Table Capacity---</th>
+             <th >Is Table Reserved---</th>
+            </thead><br>
+    
+          <tr th:each="list : ${list}">
+              <td th:text="${list.getTable_id()}" ></td>
+              <td th:text="${list.getCapacity()}"></td>
+              <td th:text="${list.isReserved()}"></td>
+          </tr>
+    
+      </table>
+    
+      </div>
+
+<!--private String fullName;
+    private String phoneNumber;
+    private String email;
+    private String date;
+    private String time;
+    private String numOfGuests;
+    private String isHoliday;-->
+
+<br><hr><br>
+
       <form action="#" th:action="@{/reservation}" th:object="${reservationForm}" method="post">
         <label>Enter your name:</label><br>
         <input type="text" th:field="*{fullName}" min="1" max="5000" required="required"/><br>
@@ -27,6 +56,8 @@ pricing module which will not be implemented in assignment 2.
         <input type="date" th:field="*{date}" th:attr="min=${now}" required="required" /><br>
         <label>Enter your reservation time:</label><br>
         <input type="time" th:field="*{time}" required="required" /><br>
+        <label>Enter number of guest :</label><br>
+        <input type="time" th:field="*{noOfGuest}" required="required" /><br>
 
         <input type="submit" name="checkavailability" value="Check Availability " />
         <input type="submit" name="finalizereservation" value="Finalize Reservation" />

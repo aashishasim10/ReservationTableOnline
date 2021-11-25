@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-  //@Autowired
-  //UserEntity userEntity;
+  @Autowired
+  TableController  tableController;
 
   @Autowired
   UserRepository userRepository;
@@ -53,6 +53,8 @@ public class LoginController {
          if(isAdmin){
              return "addTable";
          }
+
+
         return "reservation";
      }
 
@@ -60,7 +62,8 @@ public class LoginController {
      catch(Exception e){
 
      String invalid="Your Username or Password didnot Match ";
-     model.addAttribute("msg", invalid);
+     //LoginModel loginModel = new LoginModel();
+     model.addAttribute("loginForm", loginModel);
      return "login";
 
      }
@@ -68,9 +71,11 @@ public class LoginController {
         if(isAdmin){
             return "addTable";
         }
+        
         return "reservation";
      }
      else{
+        model.addAttribute("loginForm", loginModel);
          return "login";
      }
 

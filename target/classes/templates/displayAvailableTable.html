@@ -35,16 +35,27 @@
 
  <center>
  <pre>
- <form action="/" method="post">
-  
-  
-  
+    <!--<form action="#" th:action="@{/reservation}" th:object="${reservationForm}" method="post">
+        <label>Enter your name:</label><br>
+        <input type="text" th:field="*{fullName}" min="1" max="5000" required="required"/><br>
+        <label>Enter your phone number:</label><br>
+        <input type="number" th:field="*{phoneNumber}" required="required" /><br>
+        <label>Enter your email:</label><br>
+        <input type="text" th:field="*{email}" required="required" /><br>
+        <label>Enter your reservation date:</label><br>
+        <input type="date" th:field="*{date}" th:attr="min=${now}" required="required" /><br>
+        <label>Enter your reservation time:</label><br>
+        <input type="time" th:field="*{time}" required="required" /><br>
 
+        <input type="submit" name="checkavailability" value="Check Availability " />
+        <input type="submit" name="finalizereservation" value="Finalize Reservation" />
+      </form>
+       add some code here to show the result of check reservation 
 
-
-</form>
+      <a href="/profile"><button>Edit Profile</button></a>
+      <a href="/reservationhistory"><button>See Reservation History</button></a>
 </pre>
-</center>
+</center>-->
 
 </body>
 </html>
