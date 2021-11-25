@@ -22,8 +22,9 @@ public class PaymentController {
 
 @GetMapping("/displayPayment")
 public String showPayment(Model model){
+
  PaymentModel payment =new PaymentModel();
- model.addAttribute("payementInfo", payment);
+ model.addAttribute("paymentInfo", payment);
 
     return "payment";
 }
