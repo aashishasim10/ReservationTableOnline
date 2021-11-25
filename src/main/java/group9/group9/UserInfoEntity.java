@@ -8,7 +8,7 @@ public class UserInfoEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) 
-    Integer userinfo_id;
+    Integer id;
     Integer userid;
 
     private  String fullName;
@@ -30,12 +30,12 @@ public class UserInfoEntity {
 
     private  String zipcode;
 
-    public int getUserinfo_id() {
-        return userinfo_id;
+    public int getId() {
+        return id;
     }
 
-    public void setUserinfo_id(int userinfo_id) {
-        this.userinfo_id = userinfo_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
     public Integer getUserId(){
         return userid;
@@ -121,7 +121,7 @@ public String getPassword() {
     @Override
     public String toString() {
         return "UserInfoEntity [address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", email=" + email
-                + ", fullname=" + fullName + ", phone=" + phone + ", state=" + state + ", userinfo_id=" + userinfo_id
+                + ", fullname=" + fullName + ", phone=" + phone + ", state=" + state + ", userinfo_id=" + id
                 + ", zipcode=" + zipcode + "]";
     }
 
