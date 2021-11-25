@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html     xmlns:th="http://www.thymeleaf.org">    
 <head>
 <meta charset="UTF-8">
 <title>Ask The user for payment information </title>
@@ -14,12 +14,19 @@
 
 
  <h4>
-   <form action="cardInformation" method="post">
+   <form action="#" action="@{/cardInformation"} th:object="${payementInfo}" method="post">
      
-FullName:<input type="text" name="cardName" placeholder="Card holder Name"/><br>
-Card NUmber :<input type="text" name="cardNumber" placeholder="Card Number"/><br>
-Expire Date:<input type="text" name="expDate" placeholder="MM/YYYY" /><br>
-Security Code:<input type="text" name="codeNumber" placeholder="Three digit number"/><br>
+FullName:
+<input type="text" th:field="*{cardName}" placeholder="Card holder Name"/><br>
+
+Card NUmber :
+<input type="text" th:field="*{cardNumber}" placeholder="Card Number"/><br>
+
+Expire Date:
+<input type="text" th:field="*{expDate}" placeholder="MM/YYYY" /><br>
+
+Security Code:
+<input type="text" th:field="*{codeNumber}" placeholder="Three digit number"/><br>
 <hr>
 
 

@@ -19,8 +19,6 @@ public class PaymentController {
  @RequestMapping(value="/cardInformation",method=RequestMethod.POST)   
 public String savePayment(@ModelAttribute("paymentModel")PaymentModel payment,ModelMap m){
    
-    // pe.setCardName(payment.getCardName());
-       //pr.save(payment);
 
 
 return null;
