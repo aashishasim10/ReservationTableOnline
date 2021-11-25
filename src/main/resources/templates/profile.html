@@ -6,15 +6,13 @@
 </head>
 <body>
     <form action="#" th:action="@{/profile}" th:object="${temp}" method="post">
-        <h>Registration</h><br>
+        <h>Profile</h><br>
         <label>User name:</label><br>
-        <input type="text" maxlength="50" th:field="*{username}" required="required" /><br>
-        <label>Password:</label><br>
-        <input type="password" th:field="*{password}" required="required" /><br>
+        <input type="text" maxlength="50" th:field="*{fullName}" required="required" /><br>
         <label>Email:</label><br>
         <input type="email" th:field="*{email}" required="required"/><br>
         <label>Phone Number:</label><br>
-        <input type="tel" th:field="*{phoneNumber}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="required"/><br>
+        <input type="tel" th:field="*{phone}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="required"/><br>
         <label>Address1:</label><br>
         <input type="text" maxlength="100" th:field="*{address1}" required="required"/><br>
         <label> Address2:</label><br>
