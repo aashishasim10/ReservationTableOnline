@@ -11,7 +11,7 @@ public class UserInfoEntity {
     Integer userinfo_id;
     Integer userid;
 
-    private  String fullname;
+    private  String fullName;
 
     private  String email;
 
@@ -43,12 +43,12 @@ public class UserInfoEntity {
     public void setUserId(int userid) {
         this.userid = userid;
     }
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -121,7 +121,7 @@ public String getPassword() {
     @Override
     public String toString() {
         return "UserInfoEntity [address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", email=" + email
-                + ", fullname=" + fullname + ", phone=" + phone + ", state=" + state + ", userinfo_id=" + userinfo_id
+                + ", fullname=" + fullName + ", phone=" + phone + ", state=" + state + ", userinfo_id=" + userinfo_id
                 + ", zipcode=" + zipcode + "]";
     }
 

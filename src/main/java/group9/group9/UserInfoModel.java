@@ -2,7 +2,7 @@ package group9.group9;
 
 public class UserInfoModel {
   
-    private  String fullname;
+    private  String fullName;
 
     private  String email;
 
@@ -20,12 +20,12 @@ public class UserInfoModel {
 
     private  String zipcode;
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
