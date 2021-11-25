@@ -20,26 +20,26 @@ public class RegistrationController {
     @GetMapping("/registration")
 	public String registration(Model model) {
         RegistrationModel registrationModel = new RegistrationModel();
-        model.addAttribute("registration", registrationModel);
+        model.addAttribute("registrationModel", registrationModel);
         return "registration";
 	}
     
     @PostMapping("/registration")
-    public String registrationSubmit(@ModelAttribute RegistrationModel registration, HttpServletResponse response) {
-        if (registration.getUsername().equals("") || registration.getPassword().equals("")) {
+    public String registrationSubmit(@ModelAttribute RegistrationModel registrationModel, HttpServletResponse response) {
+        if (registrationModel.getUsername().equals("") || registrationModel.getPassword().equals("")) {
             return "redirect:/registration";
         }
 
-        List<UserEntity> clients = userRepository.findByUsername(registration.getUsername());
+        List<UserEntity> clients = userRepository.findByUsername(registrationModel.getUsername());
 
         if (!clients.isEmpty()) {
             return "redirect:/registration";
         }
 
         UserEntity n = new UserEntity();
-        n.setUsername(registration.getUsername());
+        n.setUsername(registrationModel.getUsername());
 
-        String hash = PasswordEncryption.hash(registration.getPassword());
+        String hash = PasswordEncryption.hash(registrationModel.getPassword());
 
         n.setPassword(hash);
         n = userRepository.save(n);
