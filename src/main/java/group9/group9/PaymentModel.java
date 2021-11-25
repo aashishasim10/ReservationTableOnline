@@ -10,7 +10,7 @@ public class PaymentModel {
     private String cardName;
     private String cardNumber;
     private String expDate;
-    private String SecCode;
+    private String secCode;
 
     public String getCardName() {
         return cardName;
@@ -30,17 +30,18 @@ public class PaymentModel {
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
+   
+
+
     public String getSecCode() {
-        return SecCode;
+        return secCode;
     }
     public void setSecCode(String secCode) {
-        SecCode = secCode;
+        this.secCode = secCode;
     }
-
-
     @Override
     public String toString() {
-        return "PaymentModel [SecCode=" + SecCode + ", cardName=" + cardName + ", cardNumber=" + cardNumber
+        return "PaymentModel [SecCode=" + secCode + ", cardName=" + cardName + ", cardNumber=" + cardNumber
                 + ", expDate=" + expDate + "]";
     }
 
