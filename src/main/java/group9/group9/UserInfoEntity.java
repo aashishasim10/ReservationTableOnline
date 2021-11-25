@@ -8,8 +8,9 @@ public class UserInfoEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) 
-    Integer id;
-    Integer userid;
+    private Integer id;
+
+    private Integer userid;
 
     private  String fullName;
 
