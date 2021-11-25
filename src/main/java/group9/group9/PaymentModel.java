@@ -1,8 +1,8 @@
 package group9.group9;
 
-import javax.persistence.Entity;
+//import javax.persistence.Entity;
 
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 
 ////@Component
 public class PaymentModel {

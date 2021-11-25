@@ -10,11 +10,7 @@ import javax.servlet.http.*;
 public class ReservationHistoryController {
     @Autowired
     private ReservationRepository reservationRepository;
-<<<<<<< HEAD
-    @GetMapping("/reservation")
-=======
     @GetMapping("/reservationhistory")
->>>>>>> main
 
     public String history(Model model, HttpServletRequest request) {
         Cookie cookie[] = request.getCookies();
@@ -33,12 +29,7 @@ public class ReservationHistoryController {
                 break;
             }
         }
-<<<<<<< HEAD
-
-        model.addAttribute("quotes", ReservationRepository.findByUserid(Integer.parseInt(userid)));
-=======
         model.addAttribute("quotes", reservationRepository.findByUserid(Integer.parseInt(userid)));
->>>>>>> main
         return "reservationHistory";
     }
 }

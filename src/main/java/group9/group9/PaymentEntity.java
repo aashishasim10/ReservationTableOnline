@@ -1,6 +1,6 @@
 package group9.group9;
 
-import javax.annotation.Generated;
+//import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
