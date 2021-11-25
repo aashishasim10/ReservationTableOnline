@@ -7,16 +7,11 @@ import org.springframework.stereotype.Component;
 ////@Component
 public class PaymentModel {
    
-    
-    
     private String cardName;
     private String cardNumber;
     private String expDate;
     private String SecCode;
 
-
-
-    
     public String getCardName() {
         return cardName;
     }

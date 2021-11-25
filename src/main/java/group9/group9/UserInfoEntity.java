@@ -8,7 +8,8 @@ public class UserInfoEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) 
-    int userinfo_id;
+    Integer userinfo_id;
+    Integer userid;
 
     private  String fullname;
 
@@ -36,7 +37,12 @@ public class UserInfoEntity {
     public void setUserinfo_id(int userinfo_id) {
         this.userinfo_id = userinfo_id;
     }
-
+    public Integer getUserId(){
+        return userid;
+    }
+    public void setUserId(int userid) {
+        this.userid = userid;
+    }
     public String getFullname() {
         return fullname;
     }

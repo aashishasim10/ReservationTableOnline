@@ -7,24 +7,25 @@ public class HolidayEntity {
    
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int holiday_id;
+    private Integer holiday_id;
+    private Integer userid;
 
     private String date;
 
     private boolean isHoliday;
 
-    public int getHoliday_id() {
+    public Integer getHoliday_id() {
         return holiday_id;
     }
 
-    public void setHoliday_id(int holiday_id) {
+    public void setHoliday_id(Integer holiday_id) {
         this.holiday_id = holiday_id;
     }
 
-    public int getUserId(){
-        return id;
+    public Integer getUserId(){
+        return userid;
     }
-    public void setUserId(int userid) {
+    public void setUserId(Integer userid) {
         this.userid = userid;
     }
 

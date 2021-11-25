@@ -22,15 +22,15 @@ public class ReservationEntity {
     private boolean isHoliday;
 
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getUserId(){
-        return id;
+    public Integer getUserId(){
+        return userid;
     }
     public void setUserId(int userid) {
         this.userid = userid;

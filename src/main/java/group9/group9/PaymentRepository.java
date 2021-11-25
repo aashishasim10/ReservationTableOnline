@@ -1,17 +1,14 @@
 package group9.group9;
 
 
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.cdi.JpaRepositoryExtension;
-import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Repository
-public interface PaymentRepository extends JpaRepository<PaymentEntity,Integer>{
+public interface PaymentRepository extends CrudRepository<PaymentEntity, Integer> {
     
-
+    List<PaymentEntity> findByUserid(Integer userid);
 
 }

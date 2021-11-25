@@ -15,7 +15,7 @@ public class PaymentEntity {
    @GeneratedValue(strategy = GenerationType.AUTO) 
    private Integer paymentID;
 
-   private Integer userId;
+   private Integer userid;
 
    private String cardName;
 
@@ -29,16 +29,16 @@ public Integer getPaymentID() {
     return paymentID;
 }
 
-public void setPaymentID(int paymentID) {
+public void setPaymentID(Integer paymentID) {
     this.paymentID = paymentID;
 }
 
 public Integer getUserId() {
-    return userId;
+    return userid;
 }
 
-public void setUserId(int userId) {
-    this.userId = userId;
+public void setUserId(Integer userid) {
+    this.userid = userid;
 }
 
 public String getCardName() {
@@ -76,7 +76,7 @@ public void setSecCode(String secCode) {
 @Override
 public String toString() {
     return "PaymentEntity [SecCode=" + SecCode + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", expDate="
-            + expDate + ", paymentID=" + paymentID + ", userId=" + userId + "]";
+            + expDate + ", paymentID=" + paymentID + ", userid=" + userid + "]";
 }
    
 
