@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.uh</groupId>
-	<artifactId>fuelratecheck</artifactId>
+	<artifactId>group9</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>fuelratecheck</name>
-	<description>Project for COSC4353</description>
+	<name>group9</name>
+	<description>Project for COSC4351</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

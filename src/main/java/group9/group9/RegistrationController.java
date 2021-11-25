@@ -15,34 +15,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegistrationController {
     @Autowired
-    private UserInfoRepository userInfoRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/registration")
 	public String registration(Model model) {
         RegistrationModel registrationModel = new RegistrationModel();
-        model.addAttribute("registration", registrationModel);
+        model.addAttribute("registrationModel", registrationModel);
         return "registration";
 	}
     
     @PostMapping("/registration")
-    public String registrationSubmit(@ModelAttribute RegistrationModel registration, HttpServletResponse response) {
-        if (registration.getUsername().equals("") || registration.getPassword().equals("")) {
+    public String registrationSubmit(@ModelAttribute RegistrationModel registrationModel, HttpServletResponse response) {
+        if (registrationModel.getUsername().equals("") || registrationModel.getPassword().equals("")) {
             return "redirect:/registration";
         }
 
-        List<UserEntity> clients = userInfoRepository.findByUsername(registration.getUsername());
+        List<UserEntity> clients = userRepository.findByUsername(registrationModel.getUsername());
 
         if (!clients.isEmpty()) {
             return "redirect:/registration";
         }
 
         UserEntity n = new UserEntity();
-        n.setName(registration.getUsername());
+        n.setUsername(registrationModel.getUsername());
 
-        String hash = PasswordEncryption.hash(registration.getPassword());
+        String hash = PasswordEncryption.hash(registrationModel.getPassword());
 
         n.setPassword(hash);
-        n = userInfoRepository.save(n);
+        n = userRepository.save(n);
 
         Cookie cookie = new Cookie("user-id", n.getId().toString());
         response.addCookie(cookie);

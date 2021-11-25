@@ -12,6 +12,7 @@ public class ReservationEntity {
 
     private Integer id;
     private Integer userid;
+    
     private String fullName;
     private String phoneNumber;
     private String email;
@@ -21,12 +22,20 @@ public class ReservationEntity {
     private boolean isHoliday;
 
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
+
+    public Integer getUserId(){
+        return userid;
+    }
+    public void setUserId(int userid) {
+        this.userid = userid;
+    }
+
     public String getFullName() {
         return fullName;
     }

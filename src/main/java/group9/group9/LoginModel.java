@@ -1,6 +1,7 @@
 package group9.group9;
 
 public class LoginModel {
+    
     private String username;
     private String password;
 
