@@ -1,13 +1,15 @@
 package group9.group9;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller 
 public class UserInfoController {
@@ -18,7 +20,8 @@ UserInfoRepository userinfoRepo;
 @Autowired
 UserRepository userRepository;
 
-
+@Autowired
+TableRepository tableRepository;
 
 
 @GetMapping(value= "/registration")
@@ -33,7 +36,7 @@ public String showRegistrationPage(Model model){
 ///This controller will insert the userInformation comoing 
 /// from register Page 
 @PostMapping("/register") 
-public String registerUser(@ModelAttribute("userInfoModel")UserInfoModel userInfo,ModelMap model){
+public String registerUser(@ModelAttribute("userInfoModel")UserInfoModel userInfo, Model model){
    UserInfoEntity userInfoEntity=new UserInfoEntity();
    userInfoEntity.setFullname(userInfo.getFullname());
    userInfoEntity.setEmail(userInfo.getEmail());
@@ -52,7 +55,26 @@ public String registerUser(@ModelAttribute("userInfoModel")UserInfoModel userInf
    userEntity.setAdmin(false);
 
    userRepository.save(userEntity);
-    return "displayAvailableTable";
+   TableModel tableModel=new TableModel();
+   List <TableEntity> list=null;
+   try{
+   list= tableRepository.findAll();
+   }
+  catch(Exception e){
+
+    
+ System.out.println("\n\n\n  YOu got null pointer exception \n\n\n"+e);
+
+
+  }
+
+
+   model.addAttribute("list",list);
+   ReservationModel reservationModel= new ReservationModel();
+   model.addAttribute("userInfoModel",reservationModel);
+   
+
+    return "reservation";
 }
 
 

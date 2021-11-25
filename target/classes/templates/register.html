@@ -15,37 +15,37 @@
         <form  action="#" th:action="@{/register}"  method="post" th:object="${userInfoModel}">
 
             <label>Full Name:</label>
-            <input type="text" th:field="*{fullname}" /><br>
+            <input type="text" th:field="*{fullname}" placeholder="Type Your Full Name"/><br>
         
             <label>Email:</label>
-            <input type="email" th:field="*{email}" /><br>
+            <input type="email" th:field="*{email}" placeholder="Your Email"/><br>
         
             <label>Password :</label>
             <input type="text" minlength="4"  th:field="*{password}" placeholder="Password"/><br>
 
             <label>Confirm Password :</label>
-            <input type="text" minlength="4"   placeholder="Password"/><br>
+            <input type="text" minlength="4"   placeholder="Confirm Password"/><br>
 
             <label>Phone Number:</label>
-            <input type="text" maxlength="10" th:field="*{phone}" /><br>
+            <input type="text" maxlength="10" th:field="*{phone}" placeholder="Personal Number "/><br>
         
         
             <label>Address 1:</label>
-            <input type="text" th:field="*{address1}" /><br>
+            <input type="text" th:field="*{address1}" placeholder="Street Name"/><br>
         
             <label>Address 2:</label>
-            <input type="text" th:field="*{address2}" /><br>
+            <input type="text" th:field="*{address2}" placeholder="APT/Building"/><br>
             
         
             <label>City :</label>
-            <input type="text" th:field="*{city}" /><br>
+            <input type="text" th:field="*{city}" placeholder="City "/><br>
         
         
             <label>State:</label>
-            <input type="text" th:field="*{state}" /><br>
+            <input type="text" th:field="*{state}" placeholder="Stete"/><br>
             
             <label>ZipCode:</label>
-            <input type="text" maxlength="8" th:field="*{zipcode}" /><br>
+            <input type="text" maxlength="8" th:field="*{zipcode}" placeholder="ZipCode"/><br>
             
                 
             <input type="submit" value="Register" />
