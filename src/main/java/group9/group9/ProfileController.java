@@ -118,17 +118,17 @@ public class ProfileController {
 
         if (userInfoEntity.isEmpty()) {
             // No user with that client id exists, lets create it.
-            UserInfoEntity newClientInfo = new UserInfoEntity();
+            UserInfoEntity newUserInfo = new UserInfoEntity();
 
-            newClientInfo.setFullName(temp.getFullName());
-            newClientInfo.setAddress1(temp.getAddress1());
-            newClientInfo.setAddress2(temp.getAddress2());
-            newClientInfo.setCity(temp.getCity());
-            newClientInfo.setState(temp.getState());
-            newClientInfo.setZipcode(temp.getZipcode());
-            newClientInfo.setUserId(Integer.parseInt(userid));
+            newUserInfo.setFullName(temp.getFullName());
+            newUserInfo.setAddress1(temp.getAddress1());
+            newUserInfo.setAddress2(temp.getAddress2());
+            newUserInfo.setCity(temp.getCity());
+            newUserInfo.setState(temp.getState());
+            newUserInfo.setZipcode(temp.getZipcode());
+            newUserInfo.setUserId(Integer.parseInt(userid));
 
-            userInfoRepository.save(newClientInfo);
+            userInfoRepository.save(newUserInfo);
         } else {
             // User client info exists, lets update it.
             userInfoEntity.get(0).setFullName(temp.getFullName());
@@ -141,7 +141,7 @@ public class ProfileController {
             userInfoRepository.save(userInfoEntity.get(0));
         }
 
-        return "redirect:/fuelquote";
+        return "redirect:/reservation";
     }
 
     private boolean isNumber(String str){
