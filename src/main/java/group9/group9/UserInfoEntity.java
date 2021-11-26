@@ -31,7 +31,7 @@ public class UserInfoEntity {
 
     private  String zipcode;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
