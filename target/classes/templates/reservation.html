@@ -15,7 +15,7 @@ pricing module which will not be implemented in assignment 2.
         </tr>
       </tbody> -->
     </h2>
-
+      <center>
       <form action="#" th:action="@{/reservation}" th:object="${reservationModel}" method="post">
         <label>Enter your name:</label><br>
         <input type="text" th:field="*{fullName}" min="1" max="5000" required="required"/><br>
@@ -37,6 +37,7 @@ pricing module which will not be implemented in assignment 2.
 
       <a href="/profile"><button>Edit Profile</button></a>
       <a href="/reservationhistory"><button>See Reservation History</button></a>
+    </center>
     </body>
 
 </html>
