@@ -30,45 +30,30 @@ public class ReservationController {
         return "reservation";
 	}
 
-    @PostMapping("/reservation")
-    public String reservationSubmit(@ModelAttribute ReservationModel reservationModel, HttpServletResponse response) {
-        
-        /* input validation for reservation variable go here */
-
-        //Carry over variable from the Model to the Entity
-
-        return "redirect:/reservation";
-    }
-
-    @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "checkavailability")
-    public String checkAvailability(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
+ 
+    @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "showAvailableTables")
+    public String showAvaliableTables(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
         
         /* input validation for reservation variable go here */
         //also check for table availability
 
 
+           //     //Retrieve profile info from UserInfoRepository and combine it with the variables from the reservation entity
+    //     // and add a new reservation entity to the repository here
+
+    //     ReservationEntity newReservationEntity = new ReservationEntity();
+
+    //     newReservationEntity.setFullName(reservationModel.getFullName());
+    //     newReservationEntity.setPhoneNumber(reservationModel.getPhoneNumber());
+    //     newReservationEntity.setEmail(reservationModel.getEmail());
+    //     newReservationEntity.setDate(reservationModel.getDate());
+    //     newReservationEntity.setTime(reservationModel.getTime());
+    //     newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
+    //     //also add isHoliday info here
+
         return "reservation";
     }
 
-    @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "finalizereservation")
-    public String finalizeReservation(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
-
-        //Retrieve profile info from UserInfoRepository and combine it with the variables from the reservation entity
-        // and add a new reservation entity to the repository here
-
-        ReservationEntity newReservationEntity = new ReservationEntity();
-
-        newReservationEntity.setFullName(reservationModel.getFullName());
-        newReservationEntity.setPhoneNumber(reservationModel.getPhoneNumber());
-        newReservationEntity.setEmail(reservationModel.getEmail());
-        newReservationEntity.setDate(reservationModel.getDate());
-        newReservationEntity.setTime(reservationModel.getTime());
-        newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
-        //also add isHoliday info here
-
-        
-        return "reservation";
-    }
 
 
 

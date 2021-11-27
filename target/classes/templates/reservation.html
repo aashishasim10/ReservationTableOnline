@@ -8,13 +8,7 @@ pricing module which will not be implemented in assignment 2.
 -->
 <html xmlns:th="http://www.thymeleaf.org/%22%3E"></html>
     <body>
-      <h2> Make a reservation here!
-      <!-- <tbody>
-        <tr th:each="myEntity : ${entities}">
-          <td><span th:text="${myEntity.getFullName()}"></span></td>
-        </tr>
-      </tbody> -->
-    </h2>
+      <h2> Make a reservation here!</h2>
 
       <form action="#" th:action="@{/reservation}" th:object="${reservationModel}" method="post">
         <label>Enter your name:</label><br>
@@ -30,10 +24,8 @@ pricing module which will not be implemented in assignment 2.
         <label>Enter the number of guests:</label><br>
         <input type="number" th:field="*{numOfGuests}" required="required" /><br>
 
-        <input type="submit" name="checkavailability" value="Check Availability " />
-        <input type="submit" name="finalizereservation" value="Finalize Reservation" />
+        <input type="submit" name="showAvailableTables" value="Check Availability " />
       </form>
-      <!-- add some code here to show the result of check reservation -->
 
       <a href="/profile"><button>Edit Profile</button></a>
       <a href="/reservationhistory"><button>See Reservation History</button></a>
