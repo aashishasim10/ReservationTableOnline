@@ -10,13 +10,15 @@ pricing module which will not be implemented in assignment 2.
     <body>
       <h2> Make a reservation here!</h2>
 
+      <div th:text="${validationError}"></div>
+
       <form action="#" th:action="@{/reservation}" th:object="${reservationModel}" method="post">
         <label>Enter your name:</label><br>
         <input type="text" th:field="*{fullName}" min="1" max="5000" required="required"/><br>
         <label>Enter your phone number:</label><br>
         <input type="number" th:field="*{phoneNumber}" required="required" /><br>
         <label>Enter your email:</label><br>
-        <input type="text" th:field="*{email}" required="required" /><br>
+        <input type="email" th:field="*{email}" required="required" /><br>
         <label>Enter your reservation date:</label><br>
         <input type="date" th:field="*{date}" th:attr="min=${now}" required="required" /><br>
         <label>Enter your reservation time:</label><br>

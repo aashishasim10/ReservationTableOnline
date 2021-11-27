@@ -16,9 +16,6 @@ public class UserInfoEntity {
 
     private  String email;
 
-    private String password;
-
-
     private  String phone;
 
     private  String address1;
@@ -59,16 +56,6 @@ public class UserInfoEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-
-public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    
 
 
     public String getPhone() {
