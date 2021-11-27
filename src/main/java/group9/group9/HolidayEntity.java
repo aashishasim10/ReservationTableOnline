@@ -8,7 +8,7 @@ public class HolidayEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer holiday_id;
-    private Integer userid;
+    
 
     private String date;
 
@@ -22,12 +22,7 @@ public class HolidayEntity {
         this.holiday_id = holiday_id;
     }
 
-    public Integer getUserId(){
-        return userid;
-    }
-    public void setUserId(Integer userid) {
-        this.userid = userid;
-    }
+   
 
     public String getDate() {
         return date;
@@ -49,6 +44,8 @@ public class HolidayEntity {
     public String toString() {
         return "HolidayEntity [date=" + date + ", holiday_id=" + holiday_id + ", isHoliday=" + isHoliday + "]";
     }
+
+    
 
     
     
