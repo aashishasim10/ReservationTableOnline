@@ -81,7 +81,6 @@ public class ReservationController {
         newReservationEntity.setDate(reservationModel.getDate());
         newReservationEntity.setTime(reservationModel.getTime());
         newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
-<<<<<<< HEAD
         newReservationEntity.setUserId(Integer.parseInt(userid));
 
         reservationRepository.save(newReservationEntity);
@@ -108,7 +107,7 @@ public class ReservationController {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
-=======
+    }
         //also add isHoliday info here
     
 
@@ -123,7 +122,6 @@ public class ReservationController {
            return "reservation"; 
         }
     
->>>>>>> DummyAashish
     }
 
 
