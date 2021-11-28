@@ -50,7 +50,7 @@ public class LoginControllerTests {
     public void loginSubmitShouldOpenLoginIfLoginFailed() throws Exception {
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "notuser")
+            .param("username", "notuser") 
             .param("password", "notpasswprd"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/login"));
