@@ -23,7 +23,7 @@ public class PaymentEntity {
 
    private String expDate;
    
-   private String secCode;
+   private String SecCode;
 
 public Integer getPaymentID() {
     return paymentID;
@@ -65,19 +65,17 @@ public void setExpDate(String expDate) {
     this.expDate = expDate;
 }
 
-
-
 public String getSecCode() {
-    return secCode;
+    return SecCode;
 }
 
 public void setSecCode(String secCode) {
-    this.secCode = secCode;
+    SecCode = secCode;
 }
 
 @Override
 public String toString() {
-    return "PaymentEntity [SecCode=" + secCode + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", expDate="
+    return "PaymentEntity [SecCode=" + SecCode + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", expDate="
             + expDate + ", paymentID=" + paymentID + ", userid=" + userid + "]";
 }
    

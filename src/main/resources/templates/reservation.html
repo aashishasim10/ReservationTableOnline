@@ -8,21 +8,10 @@ pricing module which will not be implemented in assignment 2.
 -->
 <html xmlns:th="http://www.thymeleaf.org/%22%3E"></html>
     <body>
-<<<<<<< HEAD
       <h2> Make a reservation here!</h2>
 
       <div th:text="${validationError}"></div>
 
-=======
-      <h2> Make a reservation here!
-      <!-- <tbody>
-        <tr th:each="myEntity : ${entities}">
-          <td><span th:text="${myEntity.getFullName()}"></span></td>
-        </tr>
-      </tbody> -->
-    </h2>
-      <center>
->>>>>>> DummyAashish
       <form action="#" th:action="@{/reservation}" th:object="${reservationModel}" method="post">
         <label>Enter your name:</label><br>
         <input type="text" th:field="*{fullName}" min="1" max="5000" required="required"/><br>
@@ -42,7 +31,6 @@ pricing module which will not be implemented in assignment 2.
 
       <a href="/profile"><button>Edit Profile</button></a>
       <a href="/reservationhistory"><button>See Reservation History</button></a>
-    </center>
     </body>
 
 </html>
