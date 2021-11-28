@@ -43,7 +43,7 @@ public class LoginControllerTests {
     public void loginShouldReturnCorrectTemplate() throws Exception {
         mockMvc.perform(get("/login"))
             .andExpect(status().isOk())
-            .andExpect(content().string(containsString("Register")));
+            .andExpect(content().string(containsString("Register Now")));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class LoginControllerTests {
 
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "group9")
+            .param("username", "mimi")
             .param("password", "wrongpassword"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/login"));
@@ -67,8 +67,8 @@ public class LoginControllerTests {
     public void loginSubmitShouldOpenLoginIfLoginSucceeded() throws Exception {
         UserEntity loginUser = new UserEntity();
         loginUser.setUserId(1);
-        loginUser.setUsername("group9");
-        loginUser.setPassword(PasswordEncryption.hash("password"));
+        loginUser.setUsername("mimi");
+        loginUser.setPassword(PasswordEncryption.hash("mypass"));
         List<UserEntity> clients = new ArrayList<>();
         clients.add(loginUser);
 
@@ -77,9 +77,9 @@ public class LoginControllerTests {
 
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "group9")
-            .param("password", "password"))
+            .param("username", "mimi")
+            .param("password", "mypass"))
             .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/reservationhistory"));
+            .andExpect(redirectedUrl("/fuelhistory"));
     }
 }
