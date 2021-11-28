@@ -32,7 +32,7 @@ public class LoginControllerTests {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserRepository clientRepository;
+    private UserRepository userRepository;
 
     @Test
     public void contextLoads() {
@@ -43,7 +43,7 @@ public class LoginControllerTests {
     public void loginShouldReturnCorrectTemplate() throws Exception {
         mockMvc.perform(get("/login"))
             .andExpect(status().isOk())
-            .andExpect(content().string(containsString("Register Now")));
+            .andExpect(content().string(containsString("Register")));
     }
 
     @Test
@@ -51,13 +51,13 @@ public class LoginControllerTests {
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .param("username", "notuser") 
-            .param("password", "notpasswprd"))
+            .param("password", "notpassword"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/login"));
 
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "mimi")
+            .param("username", "group9")
             .param("password", "wrongpassword"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/login"));
@@ -67,19 +67,19 @@ public class LoginControllerTests {
     public void loginSubmitShouldOpenLoginIfLoginSucceeded() throws Exception {
         UserEntity loginUser = new UserEntity();
         loginUser.setUserId(1);
-        loginUser.setUsername("mimi");
-        loginUser.setPassword(PasswordEncryption.hash("mypass"));
+        loginUser.setUsername("group9");
+        loginUser.setPassword(PasswordEncryption.hash("password"));
         List<UserEntity> clients = new ArrayList<>();
         clients.add(loginUser);
 
-        when(clientRepository.findByUsername(anyString()))
+        when(userRepository.findByUsername(anyString()))
             .thenReturn(clients);
 
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "mimi")
-            .param("password", "mypass"))
+            .param("username", "group9")
+            .param("password", "password"))
             .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/fuelhistory"));
+            .andExpect(redirectedUrl("/reservationhistory"));
     }
 }
