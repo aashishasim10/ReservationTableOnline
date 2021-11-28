@@ -43,7 +43,7 @@ public class LoginControllerTests {
     public void loginShouldReturnCorrectTemplate() throws Exception {
         mockMvc.perform(get("/login"))
             .andExpect(status().isOk())
-            .andExpect(content().string(containsString("Register Now")));
+            .andExpect(content().string(containsString("Register")));
     }
 
     @Test
@@ -51,13 +51,13 @@ public class LoginControllerTests {
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             .param("username", "notuser")
-            .param("password", "notpass"))
+            .param("password", "notpasswprd"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/login"));
 
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "mimi")
+            .param("username", "group9")
             .param("password", "wrongpassword"))
             .andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/login"));
@@ -65,11 +65,11 @@ public class LoginControllerTests {
 
     @Test
     public void loginSubmitShouldOpenLoginIfLoginSucceeded() throws Exception {
-        ClientEntity loginUser = new ClientEntity();
-        loginUser.setId(1);
-        loginUser.setName("mimi");
-        loginUser.setPassword(PasswordEncryption.hash("mypass"));
-        List<ClientEntity> clients = new ArrayList<>();
+        UserEntity loginUser = new UserEntity();
+        loginUser.setUserId(1);
+        loginUser.setUsername("group9");
+        loginUser.setPassword(PasswordEncryption.hash("password"));
+        List<UserEntity> clients = new ArrayList<>();
         clients.add(loginUser);
 
         when(clientRepository.findByUsername(anyString()))
@@ -77,9 +77,9 @@ public class LoginControllerTests {
 
         mockMvc.perform(post("/login")
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .param("username", "mimi")
-            .param("password", "mypass"))
+            .param("username", "group9")
+            .param("password", "password"))
             .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/fuelhistory"));
+            .andExpect(redirectedUrl("/reservationhistory"));
     }
 }
