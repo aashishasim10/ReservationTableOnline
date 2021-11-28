@@ -21,6 +21,11 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    
+
+    @Autowired
+    HolidayRepository holidayRepository;
+
     @GetMapping("/reservation")
 	public String reservation(Model model) {
         
@@ -76,6 +81,7 @@ public class ReservationController {
         newReservationEntity.setDate(reservationModel.getDate());
         newReservationEntity.setTime(reservationModel.getTime());
         newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
+<<<<<<< HEAD
         newReservationEntity.setUserId(Integer.parseInt(userid));
 
         reservationRepository.save(newReservationEntity);
@@ -102,8 +108,99 @@ public class ReservationController {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+=======
+        //also add isHoliday info here
+    
+
+        boolean valid=isValidDate (reservationModel.getDate());
+        boolean isholiday=isHolidayToday(reservationModel.getDate());
+        newReservationEntity.setHoliday(isholiday);
+        
+        if(valid && isholiday){
+            return "payment";
+        }
+        else{
+           return "reservation"; 
+        }
+    
+>>>>>>> DummyAashish
     }
 
 
 
+
+///// This method  will validate the date format
+public boolean isValidDate (String date){
+    boolean flag=false;
+    String year="";
+    String day="";
+    String month="";
+ for(int i=0;i<10;i++){
+   if(i<4){
+     year= year+date.charAt(i);
+   }
+   else if(i>4 && i<7){
+       month=month+date.charAt(i);
+
+   }
+   else if (i>7){
+   
+   day=day+date.charAt(i);
+   }
+ 
+ else{
+     
+ }
 }
+//////////////////////////////converting String to integer 
+ int y=Integer.parseInt(year);
+ int m=Integer.parseInt(month);
+ int d=Integer.parseInt(day);
+///////////////////////////////
+if(y>2020 && m>0 && m<13 && d>0 && d<31){
+flag=true;
+}
+else{
+    flag=false;
+}
+///////////////////////
+if(flag){
+    return true;
+}
+else{
+    return false;
+}
+ 
+}
+
+
+///this method will check if Holiday or not:
+public boolean isHolidayToday(String date){
+
+    HolidayEntity holidayList=holidayRepository.findByDate(date);
+  
+     boolean flag=holidayList.isHoliday();
+
+     if(flag){
+         System.out.println(flag);
+         return true;
+     }
+     else{
+        System.out.println(flag);
+         return false;
+     } 
+     
+}
+
+
+
+
+
+
+
+}
+
+
+
+
+
