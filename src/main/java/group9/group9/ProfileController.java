@@ -126,8 +126,11 @@ public class ProfileController {
             UserInfoEntity newUserInfo = new UserInfoEntity();
 
             newUserInfo.setFullName(temp.getFullName());
+<<<<<<< HEAD
             newUserInfo.setEmail(temp.getEmail());
             newUserInfo.setPhone(temp.getPhone());
+=======
+>>>>>>> master
             newUserInfo.setAddress1(temp.getAddress1());
             newUserInfo.setAddress2(temp.getAddress2());
             newUserInfo.setCity(temp.getCity());
@@ -150,7 +153,11 @@ public class ProfileController {
             userInfoRepository.save(userInfoEntity.get(0));
         }
 
+<<<<<<< HEAD
         return "redirect:/registration";
+=======
+        return "redirect:/reservation";
+>>>>>>> master
     }
 
     private boolean isNumber(String str){

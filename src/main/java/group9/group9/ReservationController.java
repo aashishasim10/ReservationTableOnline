@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
@@ -26,35 +26,47 @@ public class ReservationController {
         
         ReservationModel reservationModel = new ReservationModel();
         model.addAttribute("reservationModel", reservationModel);
+        model.addAttribute("validationError", ""); //nothing for the time being
 
         return "reservation";
 	}
 
-    @PostMapping("/reservation")
-    public String reservationSubmit(@ModelAttribute ReservationModel reservationModel, HttpServletResponse response) {
-        
-        /* input validation for reservation variable go here */
-
-        //Carry over variable from the Model to the Entity
-
-        return "redirect:/reservation";
-    }
-
-    @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "checkavailability")
-    public String checkAvailability(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
+ 
+    @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "showAvailableTables")
+    public String showAvaliableTables(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
         
         /* input validation for reservation variable go here */
         //also check for table availability
 
+        if (reservationModel.getFullName() == "" || 
+            reservationModel.getFullName().length() > 50 ||
+            !isNumber(reservationModel.getPhoneNumber()) ||
+            !isValidEmailAddress(reservationModel.getEmail()) ||
+            !isNumber(reservationModel.getNumOfGuests()) ||
+            (isNumber(reservationModel.getNumOfGuests()) && !(Integer.parseInt(reservationModel.getNumOfGuests()) > 0)))
+        {
+            model.addAttribute("validationError", "You have entered invalid parameter. Please try again.");
 
-        return "reservation";
-    }
+            return "reservation";
+        }
 
-    @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "finalizereservation")
-    public String finalizeReservation(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
-
-        //Retrieve profile info from UserInfoRepository and combine it with the variables from the reservation entity
-        // and add a new reservation entity to the repository here
+        //get to cookie to find out the userid for this user
+        Cookie cookie1[] = request.getCookies();
+        String userid="";
+        for(int i=0; i<cookie1.length; i++) {
+            userid = cookie1[i].getValue();
+            try{
+                Integer.parseInt(userid);
+            }
+            catch(NumberFormatException e)
+            {
+                userid=null;
+            }
+            if(userid != null)
+            {
+                break;
+            }
+        }
 
         ReservationEntity newReservationEntity = new ReservationEntity();
 
@@ -64,10 +76,32 @@ public class ReservationController {
         newReservationEntity.setDate(reservationModel.getDate());
         newReservationEntity.setTime(reservationModel.getTime());
         newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
-        //also add isHoliday info here
+        newReservationEntity.setUserId(Integer.parseInt(userid));
 
-        
-        return "reservation";
+        reservationRepository.save(newReservationEntity);
+
+
+    //     //also add isHoliday info here
+
+        return "redirect:/displayAvailableTable";
+    }
+
+    private boolean isNumber(String str){
+        boolean flag = true;
+        for(int i = 0; i < str.length(); i++){
+            if(Character.isDigit(str.charAt(i)) == false){
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+    //source: https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-method
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 
 
