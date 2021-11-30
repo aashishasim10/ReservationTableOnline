@@ -112,15 +112,15 @@ public class ReservationController {
         newReservationEntity.setUserId(Integer.parseInt(userid));
         
 
-         HolidayEntity he=holidayRepository.findByDate(reservationModel.getDate());
-         boolean flag=he.isHoliday();
-         if(flag==true){
-            newReservationEntity.setHoliday(true);
-            reservationRepository.save(newReservationEntity);
-            return "payment";
-         }
+        //  HolidayEntity he=holidayRepository.findByDate(reservationModel.getDate());
+        //  boolean flag=he.isHoliday();
+        //  if(flag==true){
+        //     newReservationEntity.setHoliday(true);
+        //     reservationRepository.save(newReservationEntity);
+        //     return "payment";
+        //  }
 
-        newReservationEntity.setHoliday(false);
+        // newReservationEntity.setHoliday(false);
         reservationRepository.save(newReservationEntity);
         
         return "redirect:/displayAvailableTable";

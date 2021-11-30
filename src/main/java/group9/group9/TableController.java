@@ -23,12 +23,9 @@ import javax.servlet.http.*;
 
 @Controller
 public class TableController {
- 
   
   @Autowired
   TableRepository tableRepository;  
-
-
 
 // this method will direst to addTable html Page
 @GetMapping("/displayAvailableTable")
