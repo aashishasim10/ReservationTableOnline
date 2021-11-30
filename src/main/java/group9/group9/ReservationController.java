@@ -27,7 +27,7 @@ public class ReservationController {
     private ReservationRepository reservationRepository;
 
     @GetMapping("/reservation")
-	public String reservation(Model model) {
+	public String reservation(Model model, HttpServletRequest request) {
         
         ReservationModel reservationModel = new ReservationModel();
         model.addAttribute("reservationModel", reservationModel);
@@ -39,8 +39,10 @@ public class ReservationController {
         .map(Cookie::getValue)
         .findFirst();
 
-        if (!userIdCookie.isPresent()) {
-            model.addAttribute("guestStatus", "");
+        model.addAttribute("guestStatus", "");
+
+        if (!userIdCookie.isPresent()) {    //this is a guest user
+            model.addAttribute("guestStatus", "You are reseving as a guest user");
         }
 
         return "reservation";
