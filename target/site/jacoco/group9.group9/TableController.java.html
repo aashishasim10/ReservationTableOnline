@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TableController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">group9</a> &gt; <a href="index.source.html" class="el_package">group9.group9</a> &gt; <span class="el_source">TableController.java</span></div><h1>TableController.java</h1><pre class="source lang-java linenums">package group9.group9;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/* this file can be combined into the reservation page */
+
+
+@Controller
+<span class="nc" id="L17">public class TableController {</span>
+ 
+  
+  @Autowired
+  TableRepository tableRepository;  
+
+
+
+
+// this method will direst to addTable html Page
+@GetMapping(&quot;/addTablePage&quot;)
+public String showAddTable(){
+
+<span class="nc" id="L30">    return &quot;addTable&quot;;</span>
+}
+
+
+// this method will get Table Information from addtable html
+// Save the information to Database on Table Entity 
+@PostMapping(&quot;/saveTable&quot;)
+public String insertTableDB(@ModelAttribute(&quot;tableModel&quot;)TableModel tableModel, ModelMap model){
+<span class="nc" id="L38">TableEntity tableEntity= new TableEntity();</span>
+<span class="nc" id="L39">tableEntity.setCapacity(tableModel.getCapacity());</span>
+<span class="nc" id="L40">tableEntity.setReserved(tableModel.isReserved());</span>
+<span class="nc" id="L41">tableRepository.save(tableEntity);</span>
+<span class="nc" id="L42">String message =&quot;Your Information is Successfully  Save to Our System &quot;;</span>
+<span class="nc" id="L43">model.addAttribute(&quot;msg&quot;, message);</span>
+<span class="nc" id="L44">return &quot;addTable&quot;;</span>
+}
+
+
+//This Method will Show all the Table on the system 
+@RequestMapping(&quot;/displayTable&quot;)
+public String displayAvailableTable(ModelMap model){
+<span class="nc" id="L51">    List&lt;TableEntity&gt; tableList= tableRepository.findAll();</span>
+
+<span class="nc" id="L53">  model.addAttribute(&quot;list&quot;, tableList);</span>
+<span class="nc" id="L54">    return &quot;displayAvailableTable&quot;;</span>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

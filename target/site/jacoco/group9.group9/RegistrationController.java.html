@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistrationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">group9</a> &gt; <a href="index.source.html" class="el_package">group9.group9</a> &gt; <span class="el_source">RegistrationController.java</span></div><h1>RegistrationController.java</h1><pre class="source lang-java linenums">package group9.group9;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+
+@Controller
+<span class="nc" id="L16">public class RegistrationController {</span>
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping(&quot;/registration&quot;)
+	public String registration(Model model) {
+<span class="nc" id="L22">        RegistrationModel registrationModel = new RegistrationModel();</span>
+<span class="nc" id="L23">        model.addAttribute(&quot;registrationModel&quot;, registrationModel);</span>
+<span class="nc" id="L24">        return &quot;registration&quot;;</span>
+	}
+    
+    @PostMapping(&quot;/registration&quot;)
+    public String registrationSubmit(@ModelAttribute RegistrationModel registrationModel, HttpServletResponse response) {
+<span class="nc bnc" id="L29" title="All 4 branches missed.">        if (registrationModel.getUsername().equals(&quot;&quot;) || registrationModel.getPassword().equals(&quot;&quot;)) {</span>
+<span class="nc" id="L30">            return &quot;redirect:/registration&quot;;</span>
+        }
+
+<span class="nc" id="L33">        List&lt;UserEntity&gt; clients = userRepository.findByUsername(registrationModel.getUsername());</span>
+
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!clients.isEmpty()) {</span>
+<span class="nc" id="L36">            return &quot;redirect:/registration&quot;;</span>
+        }
+
+<span class="nc" id="L39">        UserEntity n = new UserEntity();</span>
+<span class="nc" id="L40">        n.setUsername(registrationModel.getUsername());</span>
+
+<span class="nc" id="L42">        String hash = PasswordEncryption.hash(registrationModel.getPassword());</span>
+
+<span class="nc" id="L44">        n.setPassword(hash);</span>
+<span class="nc" id="L45">        n = userRepository.save(n);</span>
+
+<span class="nc" id="L47">        Cookie cookie = new Cookie(&quot;user-id&quot;, n.getId().toString());</span>
+<span class="nc" id="L48">        response.addCookie(cookie);</span>
+
+<span class="nc" id="L50">        return &quot;redirect:/profile&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

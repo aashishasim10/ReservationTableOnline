@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservationEntity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">group9</a> &gt; <a href="index.source.html" class="el_package">group9.group9</a> &gt; <span class="el_source">ReservationEntity.java</span></div><h1>ReservationEntity.java</h1><pre class="source lang-java linenums">package group9.group9;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+<span class="nc" id="L9">public class ReservationEntity {</span>
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+
+    private Integer id;
+    private Integer userid;
+    
+    private String fullName;
+    private String phoneNumber;
+    private String email;
+    private String date;
+    private String time;
+    private int numOfGuests;
+    private boolean isHoliday;
+
+
+    public Integer getId(){
+<span class="nc" id="L26">        return id;</span>
+    }
+    public void setId(int id) {
+<span class="nc" id="L29">        this.id = id;</span>
+<span class="nc" id="L30">    }</span>
+
+    public Integer getUserId(){
+<span class="nc" id="L33">        return userid;</span>
+    }
+    public void setUserId(int userid) {
+<span class="nc" id="L36">        this.userid = userid;</span>
+<span class="nc" id="L37">    }</span>
+
+    public String getFullName() {
+<span class="nc" id="L40">        return fullName;</span>
+    }
+    public void setFullName(String fullName) {
+<span class="nc" id="L43">        this.fullName = fullName;</span>
+<span class="nc" id="L44">    }</span>
+    public String getPhoneNumber() {
+<span class="nc" id="L46">        return phoneNumber;</span>
+    }
+    public void setPhoneNumber(String phoneNumber) {
+<span class="nc" id="L49">        this.phoneNumber = phoneNumber;</span>
+<span class="nc" id="L50">    }</span>
+    public String getEmail() {
+<span class="nc" id="L52">        return email;</span>
+    }
+    public void setEmail(String email) {
+<span class="nc" id="L55">        this.email = email;</span>
+<span class="nc" id="L56">    }</span>
+    public String getDate() {
+<span class="nc" id="L58">        return date;</span>
+    }
+    public void setDate(String date) {
+<span class="nc" id="L61">        this.date = date;</span>
+<span class="nc" id="L62">    }</span>
+    public String getTime() {
+<span class="nc" id="L64">        return time;</span>
+    }
+    public void setTime(String time) {
+<span class="nc" id="L67">        this.time = time;</span>
+<span class="nc" id="L68">    }</span>
+    public int getNumOfGuests() {
+<span class="nc" id="L70">        return numOfGuests;</span>
+    }
+    public void setNumOfGuests(int numOfGuests) {
+<span class="nc" id="L73">        this.numOfGuests = numOfGuests;</span>
+<span class="nc" id="L74">    }</span>
+    public boolean isHoliday() {
+<span class="nc" id="L76">        return isHoliday;</span>
+    }
+    public void setHoliday(boolean isHoliday) {
+<span class="nc" id="L79">        this.isHoliday = isHoliday;</span>
+<span class="nc" id="L80">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

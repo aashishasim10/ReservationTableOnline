@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">group9</a> &gt; <a href="index.source.html" class="el_package">group9.group9</a> &gt; <span class="el_source">PaymentModel.java</span></div><h1>PaymentModel.java</h1><pre class="source lang-java linenums">package group9.group9;
+
+//import javax.persistence.Entity;
+
+//import org.springframework.stereotype.Component;
+
+////@Component
+<span class="nc" id="L8">public class PaymentModel {</span>
+   
+    private String cardName;
+    private String cardNumber;
+    private String expDate;
+    private String SecCode;
+
+    public String getCardName() {
+<span class="nc" id="L16">        return cardName;</span>
+    }
+    public void setCardName(String cardName) {
+<span class="nc" id="L19">        this.cardName = cardName;</span>
+<span class="nc" id="L20">    }</span>
+    public String getCardNumber() {
+<span class="nc" id="L22">        return cardNumber;</span>
+    }
+    public void setCardNumber(String cardNumber) {
+<span class="nc" id="L25">        this.cardNumber = cardNumber;</span>
+<span class="nc" id="L26">    }</span>
+    public String getExpDate() {
+<span class="nc" id="L28">        return expDate;</span>
+    }
+    public void setExpDate(String expDate) {
+<span class="nc" id="L31">        this.expDate = expDate;</span>
+<span class="nc" id="L32">    }</span>
+    public String getSecCode() {
+<span class="nc" id="L34">        return SecCode;</span>
+    }
+    public void setSecCode(String secCode) {
+<span class="nc" id="L37">        SecCode = secCode;</span>
+<span class="nc" id="L38">    }</span>
+
+
+    @Override
+    public String toString() {
+<span class="nc" id="L43">        return &quot;PaymentModel [SecCode=&quot; + SecCode + &quot;, cardName=&quot; + cardName + &quot;, cardNumber=&quot; + cardNumber</span>
+<span class="nc" id="L44">                + &quot;, expDate=&quot; + expDate + &quot;]&quot;;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
