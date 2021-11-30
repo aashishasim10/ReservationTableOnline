@@ -26,10 +26,12 @@ public class TableController {
 
 
 // this method will direst to addTable html Page
-@GetMapping("/addTablePage")
-public String showAddTable(){
+@GetMapping("/displayAvailableTable")
+public String showAddTable(Model map){
+    List<TableEntity> tableList= tableRepository.findByIsReserved(false);
 
-    return "addTable";
+    map.addAttribute("list", tableList);
+    return "displayAvailableTable";
 }
 
 
@@ -66,6 +68,12 @@ public String selectTable(@RequestParam(name="tid")int tid,Model model){
 
     model.addAttribute("list", tableList);
     return "reservationHistory";
+}
+
+@RequestMapping("/checkReservation")
+public String checkReservation(Model map){
+    
+    return "allReservation";
 }
 
 
