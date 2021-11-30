@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;
+import java.time.LocalDate;
 
 @Controller
 public class ReservationController {
@@ -37,6 +38,12 @@ public class ReservationController {
         ReservationModel reservationModel = new ReservationModel();
         model.addAttribute("reservationModel", reservationModel);
         model.addAttribute("validationError", ""); //nothing for the time being
+
+        //time restrictions for the past
+        LocalDate now = LocalDate.now();
+        LocalDate later = now.plusYears(2);
+        model.addAttribute("now", now);
+        model.addAttribute("later", later);
 
         Cookie cookie1[] = request.getCookies();
         String userid="";
