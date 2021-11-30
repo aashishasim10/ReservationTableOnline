@@ -18,15 +18,16 @@
          <th scope="col">Table ID---</th>
          <th scope="col">Table Capacity---</th>
          <th scope="col">Is Table Reserved---</th>
-         <th scope="col">Is Table Reserved---</th>
+         
          <th scope="col">Pick Table</th>
+         
         </thead><br>
 
       <tr scope="row" th:each="list : ${list}">
           <td th:text="${list.getTable_id()}" ></td>
           <td th:text="${list.getCapacity()}"></td>
           <td th:text="${list.isReserved()}"></td>
-          <td > </td>
+          <td > <a href="selectTable?tid=${list.getTable_id()}">Select</a> </td>
       </tr>
 
   </table>

@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /* this file can be combined into the reservation page */
 
@@ -54,6 +56,17 @@ public String displayAvailableTable(ModelMap model){
     return "displayAvailableTable";
 }
 
+@RequestMapping("/selectTable")
+public String selectTable(@RequestParam(name="tid")int tid,Model model){
+    //int id=Integer.parseInt(tid);
+    TableEntity tableList= tableRepository.findById(tid).get();
+    
+    tableList.setReserved(true);
+    tableRepository.save(tableList);
+
+    model.addAttribute("list", tableList);
+    return "reservationHistory";
+}
 
 
 
