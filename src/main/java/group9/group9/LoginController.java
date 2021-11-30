@@ -17,11 +17,15 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired 
+    TableController tableController;
+
     @GetMapping("/login")
 	public String login(Model model) {
         LoginModel loginModel = new LoginModel();
         model.addAttribute("loginModel", loginModel);
-
+        
+        //tableController.combineTable(6);
         
         return "login";
 	}

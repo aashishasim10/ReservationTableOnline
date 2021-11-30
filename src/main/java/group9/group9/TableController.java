@@ -1,5 +1,6 @@
 package group9.group9;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,14 +104,68 @@ public String checkReservation(Model map){
 
 
 
+//@RequestMapping("/combineTable")
+//public String combineTable(@RequestParam(name="guestNo") String  guest,Model map){
+
+//return "reservationHistory";
+//}
+
+
+
 @RequestMapping("/combineTable")
-public String combineTable(@RequestParam(name="guestNo") String  guest,Model map){
+public String combineTable( @RequestParam(name="num")String num, Model map){
+
+    List<Integer> listTid=new ArrayList<>();
+int guest=Integer.parseInt(num);
+if(guest%2!=0){
+    guest++;
+}
+
+if(guest>2 && guest<9){
+
+
+if(guest==8){
+   List<TableEntity> t1= tableRepository.findByCapacityAndIsReserved(6, false);
+   List<TableEntity> t2= tableRepository.findByCapacityAndIsReserved(2, false);
+   listTid.add(t1.get(0).getTable_id());
+   listTid.add(t2.get(0).getTable_id());
+
+
+}
+else if(guest==6){
+    List<TableEntity> t1= tableRepository.findByCapacityAndIsReserved(4, false);
+    List<TableEntity> t2= tableRepository.findByCapacityAndIsReserved(2, false);
+    listTid.add(t1.get(0).getTable_id());
+    listTid.add(t2.get(0).getTable_id());
+}
+
+else{// guest ===4
+
+    List<TableEntity> t1= tableRepository.findByCapacityAndIsReserved(2, false);
+    List<TableEntity> t2= tableRepository.findByCapacityAndIsReserved(2, false);
+    listTid.add(t1.get(0).getTable_id());
+    listTid.add(t2.get(0).getTable_id());
+
+}
+
+}
+System.out.println("List if Table Id Is --");
+System.out.println(listTid);
+map.addAttribute("list", listTid);
+
+TableEntity table1=tableRepository.findById(listTid.get(0)).get();
+table1.setReserved(true);
+tableRepository.save(table1);
+
+TableEntity table2=tableRepository.findById(listTid.get(1)).get();
+table2.setReserved(true);
+tableRepository.save(table2);
+
+
+
 
 return "reservationHistory";
 }
-
-
-
 
 
 

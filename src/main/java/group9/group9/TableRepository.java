@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface TableRepository extends JpaRepository<TableEntity,Integer>     {
     
      List<TableEntity> findByIsReserved(boolean f);
+
+     List<TableEntity> findByCapacityAndIsReserved(int num,boolean flag);
 }
