@@ -45,6 +45,8 @@ public class ProfileController {
         //pre-fill client info if needed
         if (userInfoEntity.isEmpty()){
             temp.setFullName("");
+            temp.setEmail("");
+            temp.setPhone("");
             temp.setAddress1("");
             temp.setAddress2("");
             temp.setCity("");
@@ -53,6 +55,8 @@ public class ProfileController {
         }
         else{
             temp.setFullName(userInfoEntity.get(0).getFullName());
+            temp.setEmail(userInfoEntity.get(0).getEmail());
+            temp.setPhone(userInfoEntity.get(0).getPhone());
             temp.setAddress1(userInfoEntity.get(0).getAddress1());
             temp.setAddress2(userInfoEntity.get(0).getAddress2());
             temp.setCity(userInfoEntity.get(0).getCity());
@@ -79,7 +83,8 @@ public class ProfileController {
             temp.getState() == "" ||
             temp.getState().length() != 2 ||
             temp.getFullName() == "" || 
-            temp.getFullName().length() > 50)
+            temp.getFullName().length() > 50 ||
+            temp.getPhone().length() != 10)
         {
             return "redirect:/profile";
         }
@@ -132,6 +137,8 @@ public class ProfileController {
         } else {
             // User client info exists, lets update it.
             userInfoEntity.get(0).setFullName(temp.getFullName());
+            userInfoEntity.get(0).setEmail(temp.getEmail());
+            userInfoEntity.get(0).setPhone(temp.getPhone());
             userInfoEntity.get(0).setAddress1(temp.getAddress1());
             userInfoEntity.get(0).setAddress2(temp.getAddress2());
             userInfoEntity.get(0).setCity(temp.getCity());

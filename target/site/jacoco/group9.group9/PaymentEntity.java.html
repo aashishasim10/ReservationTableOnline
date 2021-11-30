@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PaymentEntity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">group9</a> &gt; <a href="index.source.html" class="el_package">group9.group9</a> &gt; <span class="el_source">PaymentEntity.java</span></div><h1>PaymentEntity.java</h1><pre class="source lang-java linenums">package group9.group9;
+
+//import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+@Entity
+<span class="fc" id="L12">public class PaymentEntity {</span>
+   
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO) 
+   private Integer paymentID;
+
+   private Integer userid;
+
+   private String cardName;
+
+   private String cardNumber;
+
+   private String expDate;
+   
+   private String SecCode;
+
+public Integer getPaymentID() {
+<span class="nc" id="L29">    return paymentID;</span>
+}
+
+public void setPaymentID(Integer paymentID) {
+<span class="nc" id="L33">    this.paymentID = paymentID;</span>
+<span class="nc" id="L34">}</span>
+
+public Integer getUserId() {
+<span class="nc" id="L37">    return userid;</span>
+}
+
+public void setUserId(Integer userid) {
+<span class="nc" id="L41">    this.userid = userid;</span>
+<span class="nc" id="L42">}</span>
+
+public String getCardName() {
+<span class="nc" id="L45">    return cardName;</span>
+}
+
+public void setCardName(String cardName) {
+<span class="nc" id="L49">    this.cardName = cardName;</span>
+<span class="nc" id="L50">}</span>
+
+public String getCardNumber() {
+<span class="nc" id="L53">    return cardNumber;</span>
+}
+
+public void setCardNumber(String cardNumber) {
+<span class="nc" id="L57">    this.cardNumber = cardNumber;</span>
+<span class="nc" id="L58">}</span>
+
+public String getExpDate() {
+<span class="nc" id="L61">    return expDate;</span>
+}
+
+public void setExpDate(String expDate) {
+<span class="nc" id="L65">    this.expDate = expDate;</span>
+<span class="nc" id="L66">}</span>
+
+public String getSecCode() {
+<span class="nc" id="L69">    return SecCode;</span>
+}
+
+public void setSecCode(String secCode) {
+<span class="nc" id="L73">    SecCode = secCode;</span>
+<span class="nc" id="L74">}</span>
+
+@Override
+public String toString() {
+<span class="nc" id="L78">    return &quot;PaymentEntity [SecCode=&quot; + SecCode + &quot;, cardName=&quot; + cardName + &quot;, cardNumber=&quot; + cardNumber + &quot;, expDate=&quot;</span>
+<span class="nc" id="L79">            + expDate + &quot;, paymentID=&quot; + paymentID + &quot;, userid=&quot; + userid + &quot;]&quot;;</span>
+}
+   
+
+  
+
+
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
