@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HolidayRepository extends CrudRepository<HolidayEntity, Integer> {
     
-    List<HolidayEntity> findByUserid(Integer userid);
+    //List<HolidayEntity> findByUserid(Integer userid);
     //not sure about the following but makes sense
-    List<HolidayEntity> findByDate(String date);
+    public HolidayEntity findByDate(String date);
 
 }

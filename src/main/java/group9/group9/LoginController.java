@@ -17,11 +17,15 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired 
+    TableController tableController;
+
     @GetMapping("/login")
 	public String login(Model model) {
         LoginModel loginModel = new LoginModel();
         model.addAttribute("loginModel", loginModel);
-
+        
+        //tableController.combineTable(6);
         
         return "login";
 	}
@@ -29,12 +33,18 @@ public class LoginController {
     @PostMapping("/login")
     public String loginSubmit(@ModelAttribute LoginModel loginModel, HttpServletResponse response) {
 
-        List<UserEntity> users = userRepository.findByUsername(loginModel.getUsername());
+       List< UserEntity> users = userRepository.findByUsername(loginModel.getUsername());
 
         if (users.isEmpty()) {
             return "redirect:/login";
         }
+        
+        if(users.get(0).isAdmin()==true){
 
+            return "addTable";
+        }
+
+        
         UserEntity user = users.get(0);
 
         String hash = PasswordEncryption.hash(loginModel.getPassword());

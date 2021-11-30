@@ -1,14 +1,22 @@
 package group9.group9;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.*;
 
 /* this file can be combined into the reservation page */
 
@@ -22,12 +30,32 @@ public class TableController {
 
 
 
-
 // this method will direst to addTable html Page
-@GetMapping("/addTablePage")
-public String showAddTable(){
+@GetMapping("/displayAvailableTable")
+public String showAddTable(Model map, HttpServletRequest request){
+    List<TableEntity> tableList= tableRepository.findByIsReserved(false);
+  
+    map.addAttribute("list", tableList);
 
-    return "addTable";
+    //fetch the cookie and find the userid
+    Cookie cookie1[] = request.getCookies();
+    String userid="";
+    for(int i=0; i<cookie1.length; i++) {
+        userid = cookie1[i].getValue();
+        try{
+            Integer.parseInt(userid);
+        }
+        catch(NumberFormatException e)
+        {
+            userid=null;
+        }
+        if(userid != null)
+        {
+            break;
+        }
+    }
+    
+    return "displayAvailableTable";
 }
 
 
@@ -52,15 +80,107 @@ public String displayAvailableTable(ModelMap model){
 
   model.addAttribute("list", tableList);
     return "displayAvailableTable";
+
+    
+}
+
+@RequestMapping("/selectTable")
+public String selectTable(@RequestParam(name="tid")int tid,Model model){
+    //int id=Integer.parseInt(tid);
+    TableEntity tableList= tableRepository.findById(tid).get();
+    
+    tableList.setReserved(true);
+    tableRepository.save(tableList);
+
+    model.addAttribute("list", tableList);
+    return "reservationHistory";
+}
+
+@RequestMapping("/checkReservation")
+public String checkReservation(Model map){
+    
+    return "allReservation";
 }
 
 
 
+//@RequestMapping("/combineTable")
+//public String combineTable(@RequestParam(name="guestNo") String  guest,Model map){
+
+//return "reservationHistory";
+//}
 
 
 
+@RequestMapping("/combineTable")
+public String combineTable( @RequestParam(name="num")String num, Model map){
+
+    List<Integer> listTid=new ArrayList<>();
+int guest=Integer.parseInt(num);
+if(guest%2!=0){
+    guest++;
+}
+
+if(guest>2 && guest<9){
 
 
+if(guest==8){
+   List<TableEntity> t1= tableRepository.findByCapacityAndIsReserved(6, false);
+   List<TableEntity> t2= tableRepository.findByCapacityAndIsReserved(2, false);
+   listTid.add(t1.get(0).getTable_id());
+   listTid.add(t2.get(0).getTable_id());
+
+
+}
+else if(guest==6){
+    List<TableEntity> t1= tableRepository.findByCapacityAndIsReserved(4, false);
+    List<TableEntity> t2= tableRepository.findByCapacityAndIsReserved(2, false);
+    listTid.add(t1.get(0).getTable_id());
+    listTid.add(t2.get(0).getTable_id());
+}
+
+else{// guest ===4
+
+    List<TableEntity> t1= tableRepository.findByCapacityAndIsReserved(2, false);
+    List<TableEntity> t2= tableRepository.findByCapacityAndIsReserved(2, false);
+    listTid.add(t1.get(0).getTable_id());
+    listTid.add(t2.get(0).getTable_id());
+
+}
+
+}
+else{
+    return "displayAvailableTable";  
+}
+System.out.println("List if Table Id Is --");
+System.out.println(listTid);
+map.addAttribute("list", listTid);
+
+TableEntity table1=tableRepository.findById(listTid.get(0)).get();
+table1.setReserved(true);
+tableRepository.save(table1);
+
+TableEntity table2=tableRepository.findById(listTid.get(1)).get();
+table2.setReserved(true);
+tableRepository.save(table2);
+
+/////I want use user Id And User_Info ID\
+/*
+ private Integer id;
+    private Integer userid;
+    private String fullName;
+    private String phoneNumber;
+    private String email;
+    private String date;
+    private String time;
+    private int numOfGuests;
+    private boolean isHoliday;
+
+*/
+
+
+return "reservationHistory";
+}
 
 
 

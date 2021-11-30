@@ -13,38 +13,43 @@
 
   <div align="center">
 
-  <table>
+  <table class="table">
       <thead>
-         <th >Table ID---</th>
-         <th >Table Capacity---</th>
-         <th >Is Table Reserved---</th>
+         <th scope="col">Table ID---</th>
+         <th scope="col">Table Capacity---</th>
+         <th scope="col">Is Table Reserved---</th>
+         
+         <th scope="col">Pick Table</th>
+         
         </thead><br>
 
-      <tr th:each="list : ${list}">
+      <tr scope="row" th:each="list : ${list}">
           <td th:text="${list.getTable_id()}" ></td>
           <td th:text="${list.getCapacity()}"></td>
           <td th:text="${list.isReserved()}"></td>
+          <td > <a th:href="@{selectTable?tid=${list.getTable_id()}}">Select</a> </td>
       </tr>
+
+
+   
 
   </table>
 
   </div>  
+<center>
+<pre>
+
+  <form  action="/combineTable" method="post" >
+  <label>Number Of Guest</label>
+  <input type="text" name="num"/> 
+
+  <input type="submit" value="Combine"/>
+  </form>
 
 
-
-
- <center>
- <pre>
- <form action="/" method="post">
-  
-  
-  
-
-
-
-</form>
 </pre>
 </center>
+  
 
 </body>
 </html>
