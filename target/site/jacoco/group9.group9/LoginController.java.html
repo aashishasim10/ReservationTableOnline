@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-<span class="nc" id="L16">public class LoginController {</span>
+<span class="fc" id="L16">public class LoginController {</span>
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping(&quot;/login&quot;)
 	public String login(Model model) {
-<span class="nc" id="L22">        LoginModel loginModel = new LoginModel();</span>
-<span class="nc" id="L23">        model.addAttribute(&quot;loginModel&quot;, loginModel);</span>
+<span class="fc" id="L22">        LoginModel loginModel = new LoginModel();</span>
+<span class="fc" id="L23">        model.addAttribute(&quot;loginModel&quot;, loginModel);</span>
 
         
-<span class="nc" id="L26">        return &quot;login&quot;;</span>
+<span class="fc" id="L26">        return &quot;login&quot;;</span>
 	}
 
     @PostMapping(&quot;/login&quot;)
     public String loginSubmit(@ModelAttribute LoginModel loginModel, HttpServletResponse response) {
 
-<span class="nc" id="L32">        List&lt;UserEntity&gt; users = userRepository.findByUsername(loginModel.getUsername());</span>
+<span class="fc" id="L32">        List&lt;UserEntity&gt; users = userRepository.findByUsername(loginModel.getUsername());</span>
 
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (users.isEmpty()) {</span>
-<span class="nc" id="L35">            return &quot;redirect:/login&quot;;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (users.isEmpty()) {</span>
+<span class="fc" id="L35">            return &quot;redirect:/login&quot;;</span>
         }
 
-<span class="nc" id="L38">        UserEntity user = users.get(0);</span>
+<span class="fc" id="L38">        UserEntity user = users.get(0);</span>
 
-<span class="nc" id="L40">        String hash = PasswordEncryption.hash(loginModel.getPassword());</span>
+<span class="fc" id="L40">        String hash = PasswordEncryption.hash(loginModel.getPassword());</span>
 
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (!user.getPassword().equals(hash)) {</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (!user.getPassword().equals(hash)) {</span>
 <span class="nc" id="L43">            return &quot;redirect:/login&quot;;</span>
         }
 
-<span class="nc" id="L46">        Cookie cookie = new Cookie(&quot;user-id&quot;, user.getId().toString());</span>
-<span class="nc" id="L47">        response.addCookie(cookie);</span>
+<span class="fc" id="L46">        Cookie cookie = new Cookie(&quot;user-id&quot;, user.getId().toString());</span>
+<span class="fc" id="L47">        response.addCookie(cookie);</span>
 
-<span class="nc" id="L49">        return &quot;redirect:/reservationhistory&quot;;</span>
+<span class="fc" id="L49">        return &quot;redirect:/reservationhistory&quot;;</span>
     }
 
 }
