@@ -33,7 +33,7 @@ public class TableController {
 @GetMapping("/displayAvailableTable")
 public String showAddTable(Model map, HttpServletRequest request){
     List<TableEntity> tableList= tableRepository.findByIsReserved(false);
-  ///
+  
     map.addAttribute("list", tableList);
 
     //fetch the cookie and find the userid
@@ -103,7 +103,11 @@ public String checkReservation(Model map){
 
 
 
+@RequestMapping("/combineTable")
+public String combineTable(@RequestParam(name="guestNo") String  guest,Model map){
 
+return "reservationHistory";
+}
 
 
 
