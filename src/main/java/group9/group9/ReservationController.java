@@ -21,6 +21,9 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    private HolidayRepository holidayRepository;
+
     @GetMapping("/reservation")
 	public String reservation(Model model) {
         
@@ -77,11 +80,33 @@ public class ReservationController {
         newReservationEntity.setTime(reservationModel.getTime());
         newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
         newReservationEntity.setUserId(Integer.parseInt(userid));
+        
+
+         
+         HolidayEntity he=holidayRepository.findByDate(reservationModel.getDate());
+         boolean flag=he.isHoliday();
+         if(flag==true){
+
+            return "payment";
+         }else{
+
+         }
 
         reservationRepository.save(newReservationEntity);
 
 
     //     //also add isHoliday info here
+    /*
+    private Integer userid;
+    
+    private String fullName;
+    private String phoneNumber;
+    private String email;
+    private String date;
+    private String time;
+    private int numOfGuests;
+    private boolean isHoliday;
+    */
 
         return "redirect:/displayAvailableTable";
     }
@@ -96,6 +121,9 @@ public class ReservationController {
         }
         return flag;
     }
+
+
+
     //source: https://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-method
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
@@ -103,6 +131,71 @@ public class ReservationController {
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
     }
+
+
+
+
+/////////////////////////////////
+    public boolean isValidDate (String date){
+        boolean flag=false;
+        String year="";
+        String day="";
+        String month="";
+     for(int i=0;i<10;i++){
+       if(i<4){
+         year= year+date.charAt(i);
+       }
+       else if(i>4 && i<7){
+           month=month+date.charAt(i);
+    
+       }
+       else if (i>7){
+    
+       day=day+date.charAt(i);
+       }
+     
+     else{
+    
+     }
+    }
+    //System.out.println(year+" "+month+"  "+day+"  \n");
+     int y=Integer.parseInt(year);
+     int m=Integer.parseInt(month);
+     int d=Integer.parseInt(day);
+
+    
+    
+     //System.out.println(y+"  "+m+"  "+d+"  \n");
+    if(y>2020 && m>0 && m<13 && d>0 && d<31){
+    flag=true;
+    }
+    else{
+        flag=false;
+    }
+
+    if(flag){
+        return true;
+    }
+    else{
+        return false;
+    }
+     
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
