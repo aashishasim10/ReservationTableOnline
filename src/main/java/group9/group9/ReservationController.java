@@ -5,6 +5,11 @@ package group9.group9;
 //import javax.servlet.http.Cookie;
 //import javax.servlet.http.HttpServletResponse;
 
+
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +32,16 @@ public class ReservationController {
         ReservationModel reservationModel = new ReservationModel();
         model.addAttribute("reservationModel", reservationModel);
         model.addAttribute("validationError", ""); //nothing for the time being
+
+        // Inputs are good, so lets fetch the cookie
+        Optional<String> userIdCookie = Arrays.stream(request.getCookies())
+        .filter(cookie -> "user-id".equals(cookie.getName()))
+        .map(Cookie::getValue)
+        .findFirst();
+
+        if (!userIdCookie.isPresent()) {
+            model.addAttribute("guestStatus", "");
+        }
 
         return "reservation";
 	}
