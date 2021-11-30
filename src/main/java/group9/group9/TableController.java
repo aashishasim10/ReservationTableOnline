@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.*;
+
 /* this file can be combined into the reservation page */
 
 
@@ -25,20 +30,31 @@ public class TableController {
 
 
 // this method will direst to addTable html Page
-<<<<<<< HEAD
 @GetMapping("/displayAvailableTable")
-public String showAddTable(Model map){
+public String showAddTable(Model map, HttpServletRequest request){
     List<TableEntity> tableList= tableRepository.findByIsReserved(false);
   ///
     map.addAttribute("list", tableList);
+
+    //fetch the cookie and find the userid
+    Cookie cookie1[] = request.getCookies();
+    String userid="";
+    for(int i=0; i<cookie1.length; i++) {
+        userid = cookie1[i].getValue();
+        try{
+            Integer.parseInt(userid);
+        }
+        catch(NumberFormatException e)
+        {
+            userid=null;
+        }
+        if(userid != null)
+        {
+            break;
+        }
+    }
     
     return "displayAvailableTable";
-=======
-@GetMapping("/addTablePage")
-public String showAddTable(){
-
-    return "addTable";
->>>>>>> 09260305f4d564f82edb76c07ed67659d42d582b
 }
 
 
