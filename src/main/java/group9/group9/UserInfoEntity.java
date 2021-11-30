@@ -28,6 +28,10 @@ public class UserInfoEntity {
 
     private  String zipcode;
 
+    private Integer bonusPoints;
+
+    private Integer hold;
+
     public Integer getId() {
         return id;
     }
@@ -106,11 +110,27 @@ public class UserInfoEntity {
         this.zipcode = zipcode;
     }
 
+    public Integer getBonusPoints() {
+        return bonusPoints;
+    }
+
+    public void setBonusPoints(Integer bonusPoints) {
+        this.bonusPoints = bonusPoints;
+    }
+
+    public Integer getHold() {
+        return hold;
+    }
+
+    public void setHold(Integer hold) {
+        this.hold = hold;
+    }
+
     @Override
     public String toString() {
         return "UserInfoEntity [address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", email=" + email
                 + ", fullname=" + fullName + ", phone=" + phone + ", state=" + state + ", userinfo_id=" + id
-                + ", zipcode=" + zipcode + "]";
+                + ", zipcode=" + zipcode + "]" + "Bonus Points: " + bonusPoints + "Hold: " + hold + "$";
     }
 
 

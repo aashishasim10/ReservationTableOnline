@@ -27,11 +27,9 @@ public class ReservationController {
     private ReservationRepository reservationRepository;
 
     @Autowired
-<<<<<<< HEAD
     private UserInfoRepository userInfoRepository;
-=======
+    @Autowired
     private HolidayRepository holidayRepository;
->>>>>>> CopiedMaster
 
     @GetMapping("/reservation")
 	public String reservation(Model model, HttpServletRequest request) {
@@ -55,15 +53,14 @@ public class ReservationController {
             {
                 break;
             }
-
         }
 
-        List<UserInfoEntity> userInfoEntity = userInfoRepository.findByUserid(Integer.parseInt(userid));
+        // List<UserInfoEntity> userInfoEntity = userInfoRepository.findByUserid(Integer.parseInt(userid));
 
-        if (userInfoEntity.isEmpty()) {
-            // No user with that client id exists, which means it's a guest.
-            model.addAttribute("guestStatus", "You are reseving as a guest user");
-        }
+        // if (userInfoEntity.isEmpty()) {
+        //     // No user with that client id exists, which means it's a guest.
+        //     model.addAttribute("guestStatus", "You are reseving as a guest user");
+        // }
 
         return "reservation";
 	}
@@ -74,7 +71,6 @@ public class ReservationController {
         
         /* input validation for reservation variable go here */
         //also check for table availability
-
         if (reservationModel.getFullName() == "" || 
             reservationModel.getFullName().length() > 50 ||
             !isNumber(reservationModel.getPhoneNumber()) ||
@@ -116,32 +112,17 @@ public class ReservationController {
         newReservationEntity.setUserId(Integer.parseInt(userid));
         
 
-         
          HolidayEntity he=holidayRepository.findByDate(reservationModel.getDate());
          boolean flag=he.isHoliday();
          if(flag==true){
-
+            newReservationEntity.setHoliday(true);
+            reservationRepository.save(newReservationEntity);
             return "payment";
-         }else{
-
          }
 
+        newReservationEntity.setHoliday(false);
         reservationRepository.save(newReservationEntity);
-
-
-    //     //also add isHoliday info here
-    /*
-    private Integer userid;
-    
-    private String fullName;
-    private String phoneNumber;
-    private String email;
-    private String date;
-    private String time;
-    private int numOfGuests;
-    private boolean isHoliday;
-    */
-
+        
         return "redirect:/displayAvailableTable";
     }
 

@@ -5,7 +5,7 @@
             "name": "Launch Group9Application",
             "request": "launch",
             "mainClass": "group9.group9.Group9Application",
-            "projectName": "fuelratecheck"
+            "projectName": "group9"
         },
         {
             "type": "java",
