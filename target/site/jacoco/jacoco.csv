@@ -8,10 +8,10 @@ group9,group9.group9,UserInfoEntity,122,3,0,0,33,1,21,1,21,1
 group9,group9.group9,TableModel,17,0,0,0,7,0,5,0,5,0
 group9,group9.group9,PaymentController,2,3,0,0,1,1,1,1,1,1
 group9,group9.group9,TableController,39,3,0,0,11,1,3,1,3,1
-group9,group9.group9,RegistrationController,68,3,6,0,16,1,5,1,2,1
-group9,group9.group9,RegistrationModel,17,0,0,0,7,0,5,0,5,0
+group9,group9.group9,RegistrationController,2,69,1,5,1,16,1,5,0,3
+group9,group9.group9,RegistrationModel,0,17,0,0,0,7,0,5,0,5
 group9,group9.group9,ReservationModel,52,0,0,0,22,0,15,0,15,0
-group9,group9.group9,PasswordEncryption,3,26,0,0,2,6,0,1,0,1
+group9,group9.group9,PasswordEncryption,0,29,0,0,0,8,0,1,0,1
 group9,group9.group9,PaymentEntity,78,3,0,0,20,1,13,1,13,1
 group9,group9.group9,UserModel,17,0,0,0,7,0,5,0,5,0
 group9,group9.group9,HolidayEntity,49,3,0,0,13,1,9,1,9,1

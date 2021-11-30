@@ -19,35 +19,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 
     @GetMapping(&quot;/registration&quot;)
 	public String registration(Model model) {
-<span class="nc" id="L22">        RegistrationModel registrationModel = new RegistrationModel();</span>
-<span class="nc" id="L23">        model.addAttribute(&quot;registrationModel&quot;, registrationModel);</span>
-<span class="nc" id="L24">        return &quot;registration&quot;;</span>
+<span class="fc" id="L22">        RegistrationModel registrationModel = new RegistrationModel();</span>
+<span class="fc" id="L23">        model.addAttribute(&quot;registrationModel&quot;, registrationModel);</span>
+<span class="fc" id="L24">        return &quot;registration&quot;;</span>
 	}
     
     @PostMapping(&quot;/registration&quot;)
     public String registrationSubmit(@ModelAttribute RegistrationModel registrationModel, HttpServletResponse response) {
-<span class="nc bnc" id="L29" title="All 4 branches missed.">        if (registrationModel.getUsername().equals(&quot;&quot;) || registrationModel.getPassword().equals(&quot;&quot;)) {</span>
-<span class="nc" id="L30">            return &quot;redirect:/registration&quot;;</span>
+<span class="fc bfc" id="L29" title="All 4 branches covered.">        if (registrationModel.getUsername().equals(&quot;&quot;) || registrationModel.getPassword().equals(&quot;&quot;)) {</span>
+<span class="fc" id="L30">            return &quot;redirect:/registration&quot;;</span>
         }
 
-<span class="nc" id="L33">        List&lt;UserEntity&gt; clients = userRepository.findByUsername(registrationModel.getUsername());</span>
+<span class="fc" id="L33">        List&lt;UserEntity&gt; clients = userRepository.findByUsername(registrationModel.getUsername());</span>
 
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!clients.isEmpty()) {</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (!clients.isEmpty()) {</span>
 <span class="nc" id="L36">            return &quot;redirect:/registration&quot;;</span>
         }
 
-<span class="nc" id="L39">        UserEntity n = new UserEntity();</span>
-<span class="nc" id="L40">        n.setUsername(registrationModel.getUsername());</span>
+<span class="fc" id="L39">        UserEntity n = new UserEntity();</span>
+<span class="fc" id="L40">        n.setUsername(registrationModel.getUsername());</span>
 
-<span class="nc" id="L42">        String hash = PasswordEncryption.hash(registrationModel.getPassword());</span>
+<span class="fc" id="L42">        String hash = PasswordEncryption.hash(registrationModel.getPassword());</span>
 
-<span class="nc" id="L44">        n.setPassword(hash);</span>
-<span class="nc" id="L45">        n = userRepository.save(n);</span>
+<span class="fc" id="L44">        n.setPassword(hash);</span>
+<span class="fc" id="L45">        n = userRepository.save(n);</span>
 
-<span class="nc" id="L47">        Cookie cookie = new Cookie(&quot;user-id&quot;, n.getId().toString());</span>
-<span class="nc" id="L48">        response.addCookie(cookie);</span>
+<span class="fc" id="L47">        Cookie cookie = new Cookie(&quot;user-id&quot;, n.getId().toString());</span>
+<span class="fc" id="L48">        response.addCookie(cookie);</span>
 
-<span class="nc" id="L50">        return &quot;redirect:/profile&quot;;</span>
+<span class="fc" id="L50">        return &quot;redirect:/profile&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
