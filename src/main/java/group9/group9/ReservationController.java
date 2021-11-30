@@ -26,6 +26,9 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    private UserInfoRepository userInfoRepository;
+
     @GetMapping("/reservation")
 	public String reservation(Model model, HttpServletRequest request) {
         
@@ -33,15 +36,28 @@ public class ReservationController {
         model.addAttribute("reservationModel", reservationModel);
         model.addAttribute("validationError", ""); //nothing for the time being
 
-        // Inputs are good, so lets fetch the cookie
-        Optional<String> userIdCookie = Arrays.stream(request.getCookies())
-        .filter(cookie -> "user-id".equals(cookie.getName()))
-        .map(Cookie::getValue)
-        .findFirst();
+        Cookie cookie1[] = request.getCookies();
+        String userid="";
+        for(int i=0; i<cookie1.length; i++) {
+            userid = cookie1[i].getValue();
+            try{
+                Integer.parseInt(userid);
+            }
+            catch(NumberFormatException e)
+            {
+                userid=null;
+            }
+            if(userid != null)
+            {
+                break;
+            }
 
-        model.addAttribute("guestStatus", "");
+        }
 
-        if (!userIdCookie.isPresent()) {    //this is a guest user
+        List<UserInfoEntity> userInfoEntity = userInfoRepository.findByUserid(Integer.parseInt(userid));
+
+        if (userInfoEntity.isEmpty()) {
+            // No user with that client id exists, which means it's a guest.
             model.addAttribute("guestStatus", "You are reseving as a guest user");
         }
 
