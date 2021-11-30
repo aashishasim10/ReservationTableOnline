@@ -149,6 +149,9 @@ else{// guest ===4
 }
 
 }
+else{
+    return "displayAvailableTable";  
+}
 System.out.println("List if Table Id Is --");
 System.out.println(listTid);
 map.addAttribute("list", listTid);
@@ -161,7 +164,19 @@ TableEntity table2=tableRepository.findById(listTid.get(1)).get();
 table2.setReserved(true);
 tableRepository.save(table2);
 
+/////I want use user Id And User_Info ID\
+/*
+ private Integer id;
+    private Integer userid;
+    private String fullName;
+    private String phoneNumber;
+    private String email;
+    private String date;
+    private String time;
+    private int numOfGuests;
+    private boolean isHoliday;
 
+*/
 
 
 return "reservationHistory";
