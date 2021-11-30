@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
     @GetMapping(&quot;/profile&quot;)
 	public String profile(Model model, HttpServletRequest request) {
-<span class="nc" id="L24">        UserInfoModel temp = new UserInfoModel();</span>
+<span class="fc" id="L24">        UserInfoModel temp = new UserInfoModel();</span>
 
-<span class="nc" id="L26">        Cookie cookie1[] = request.getCookies();</span>
-<span class="nc" id="L27">        String userid=&quot;&quot;;</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        for(int i=0; i&lt;cookie1.length; i++) {</span>
+<span class="fc" id="L26">        Cookie cookie1[] = request.getCookies();</span>
+<span class="fc" id="L27">        String userid=&quot;&quot;;</span>
+<span class="pc bnc" id="L28" title="All 2 branches missed.">        for(int i=0; i&lt;cookie1.length; i++) {</span>
 <span class="nc" id="L29">            userid = cookie1[i].getValue();</span>
             try{
 <span class="nc" id="L31">                Integer.parseInt(userid);</span>
@@ -73,20 +73,20 @@ import org.springframework.web.bind.annotation.PostMapping;
     public String profileSubmit(HttpServletRequest request, @ModelAttribute UserInfoModel temp) {
         // Validate the inputs, if invalid refresh profile page
 
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (temp.getZipcode().length() &lt; 5 ||</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">            temp.getZipcode().length() &gt; 9 ||</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">            !isNumber(temp.getZipcode()) ||</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">            temp.getAddress1() == &quot;&quot; || </span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">            temp.getAddress1().length() &gt; 100 ||</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">            temp.getCity() == &quot;&quot; ||</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">            temp.getCity().length() &gt; 100 ||</span>
-<span class="nc bnc" id="L83" title="All 2 branches missed.">            temp.getState() == &quot;&quot; ||</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">            temp.getState().length() != 2 ||</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">            temp.getFullName() == &quot;&quot; || </span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">            temp.getFullName().length() &gt; 50 ||</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (temp.getZipcode().length() &lt; 5 ||</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            temp.getZipcode().length() &gt; 9 ||</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            !isNumber(temp.getZipcode()) ||</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            temp.getAddress1() == &quot;&quot; || </span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            temp.getAddress1().length() &gt; 100 ||</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            temp.getCity() == &quot;&quot; ||</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">            temp.getCity().length() &gt; 100 ||</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            temp.getState() == &quot;&quot; ||</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">            temp.getState().length() != 2 ||</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            temp.getFullName() == &quot;&quot; || </span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">            temp.getFullName().length() &gt; 50 ||</span>
 <span class="nc bnc" id="L87" title="All 2 branches missed.">            temp.getPhone().length() != 10)</span>
         {
-<span class="nc" id="L89">            return &quot;redirect:/profile&quot;;</span>
+<span class="fc" id="L89">            return &quot;redirect:/profile&quot;;</span>
         }
 
         // Inputs are good, so lets fetch the cookie
@@ -152,14 +152,14 @@ import org.springframework.web.bind.annotation.PostMapping;
     }
 
     private boolean isNumber(String str){
-<span class="nc" id="L155">        boolean flag = true;</span>
-<span class="nc bnc" id="L156" title="All 2 branches missed.">        for(int i = 0; i &lt; str.length(); i++){</span>
-<span class="nc bnc" id="L157" title="All 2 branches missed.">            if(Character.isDigit(str.charAt(i)) == false){</span>
+<span class="fc" id="L155">        boolean flag = true;</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        for(int i = 0; i &lt; str.length(); i++){</span>
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">            if(Character.isDigit(str.charAt(i)) == false){</span>
 <span class="nc" id="L158">                flag = false;</span>
 <span class="nc" id="L159">                break;</span>
             }
         }
-<span class="nc" id="L162">        return flag;</span>
+<span class="fc" id="L162">        return flag;</span>
     }
 }
 
