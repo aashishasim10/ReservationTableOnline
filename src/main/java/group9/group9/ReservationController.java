@@ -88,7 +88,7 @@ public class ReservationController {
 
  
     @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "showAvailableTables")
-    public String showAvaliableTables(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
+    public String showAvailableTables(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
         
         /* input validation for reservation variable go here */
         //also check for table availability
