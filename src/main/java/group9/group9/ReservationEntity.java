@@ -14,7 +14,7 @@ public class ReservationEntity {
     private Integer userid;
     
 
-    private int tableId;
+    private Integer tableId;
     private String fullName;
     private String phoneNumber;
     private String email;
@@ -24,10 +24,10 @@ public class ReservationEntity {
     private boolean isHoliday;
 
 
-    public int getTableId() {
+    public Integer getTableId() {
         return tableId;
     }
-    public void setTableId(int tableId) {
+    public void setTableId(Integer tableId) {
         this.tableId = tableId;
     }
     public Integer getId(){

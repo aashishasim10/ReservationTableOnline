@@ -10,7 +10,7 @@ public interface ReservationRepository extends CrudRepository<ReservationEntity,
     
     List<ReservationEntity> findByUserid(Integer userid);
 
-   List<ReservationEntity> findByDateAndTimeAndTableId(String date,String time,int id);
+   List<ReservationEntity> findByDateAndTableId(String date,Integer id);
   
 
 

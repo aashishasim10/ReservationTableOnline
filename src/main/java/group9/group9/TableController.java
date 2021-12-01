@@ -112,6 +112,22 @@ public String selectTable(@RequestParam(name="tid")String tid,Model model,HttpSe
     List<ReservationEntity> usersReservation = reservationRepository.findByUserid(Integer.parseInt(userid));
     String date = usersReservation.get(0).getDate();
     String time = usersReservation.get(0).getTime();
+    Integer table_id = usersReservation.get(0).getTableId();
+
+    List<ReservationEntity> conflictChecker = reservationRepository.findByDateAndTableId(date,table_id);
+    // no conflicts, assign table id
+    if(conflictChecker.isEmpty()){
+        usersReservation.get(0).setTableId(id);
+    }
+    else{
+        if(time.substring(0,3).equals(conflictChecker.get(0).getTime().substring(0,3))){//there is a conflict
+            return "displayAvailableTable";
+        }
+        else{//no conflict
+            usersReservation.get(0).setTableId(id);
+        }
+    }
+
 
     
     tableList.setReserved(true);
