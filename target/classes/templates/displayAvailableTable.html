@@ -27,7 +27,7 @@
           <td th:text="${list.getTable_id()}" ></td>
           <td th:text="${list.getCapacity()}"></td>
           <td th:text="${list.isReserved()}"></td>
-          <td ><button><a th:href="@{/selectTable?tid=${list.getTable_id()}}">Select</a></button> </td>
+          <td ><button><a href="#" th:href="@{/selectTable(tid=${list.getTable_id()})}"   >Select</a></button> </td>
       </tr>
 
 
