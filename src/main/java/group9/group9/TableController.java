@@ -27,6 +27,9 @@ public class TableController {
   @Autowired
   TableRepository tableRepository;  
 
+  @Autowired
+  ReservationRepository reservationRepository; 
+  
 // this method will direst to addTable html Page
 @GetMapping("/displayAvailableTable")
 public String showAddTable(Model map, HttpServletRequest request){
@@ -82,9 +85,34 @@ public String displayAvailableTable(ModelMap model){
 }
 
 @RequestMapping("/selectTable")
-public String selectTable(@RequestParam(name="tid")String tid,Model model){
+public String selectTable(@RequestParam(name="tid")String tid,Model model,HttpServletRequest request){
     int id=Integer.parseInt(tid);
     TableEntity tableList= tableRepository.findById(id).get();
+
+    //ReservationEntity reservationEntity= new ReservationEntity();
+    //reservationEntity.setTableId(id);
+   
+    Cookie cookie1[] = request.getCookies();
+    String userid="";
+    for(int i=0; i<cookie1.length; i++) {
+        userid = cookie1[i].getValue();
+        try{
+            Integer.parseInt(userid);
+        }
+        catch(NumberFormatException e)
+        {
+            userid=null;
+        }
+        if(userid != null)
+        {
+            break;
+        }
+    }
+    
+    List<ReservationEntity> usersReservation = reservationRepository.findByUserid(Integer.parseInt(userid));
+    String date = usersReservation.get(0).getDate();
+    String time = usersReservation.get(0).getTime();
+
     
     tableList.setReserved(true);
     tableRepository.save(tableList);
