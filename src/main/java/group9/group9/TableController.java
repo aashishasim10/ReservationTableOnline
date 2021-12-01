@@ -27,6 +27,9 @@ public class TableController {
   @Autowired
   TableRepository tableRepository;  
 
+  @Autowired
+  ReservationRepository reservationRepository; 
+  
 // this method will direst to addTable html Page
 @GetMapping("/displayAvailableTable")
 public String showAddTable(Model map, HttpServletRequest request){
