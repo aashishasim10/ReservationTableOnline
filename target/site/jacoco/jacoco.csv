@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 group9,group9.group9,PaymentModel,57,0,0,0,15,0,10,0,10,0
 group9,group9.group9,UserEntity,0,57,0,0,0,15,0,10,0,10
 group9,group9.group9,Group9Application,0,8,0,0,0,3,0,2,0,2
-group9,group9.group9,TableEntity,42,3,0,0,10,1,7,1,7,1
+group9,group9.group9,TableEntity,0,45,0,0,0,11,0,8,0,8
 group9,group9.group9,LoginController,59,3,6,0,15,1,5,1,2,1
 group9,group9.group9,UserInfoEntity,0,151,0,0,0,40,0,26,0,26
 group9,group9.group9,TableModel,17,0,0,0,7,0,5,0,5,0
