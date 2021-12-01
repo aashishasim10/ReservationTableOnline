@@ -181,16 +181,6 @@ return "reservationHistory";
 
 
 
-@RequestMapping("/selectTable")
-public String selectTable(@RequestParam(name="tid")String tid,Model map){
-    
-    int tableId=Integer.parseInt(tid);
-
-
-return null;
-}
-
-
 
 
 
