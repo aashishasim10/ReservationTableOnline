@@ -35,8 +35,6 @@ public class ReservationController {
     @GetMapping("/reservation")
 	public String reservation(Model model, HttpServletRequest request) {
         
-        ReservationModel reservationModel = new ReservationModel();
-        model.addAttribute("reservationModel", reservationModel);
         model.addAttribute("validationError", ""); //nothing for the time being
 
         //time restrictions for the past
@@ -65,11 +63,16 @@ public class ReservationController {
         List<UserInfoEntity> temp = userInfoRepository.findByUserid(Integer.parseInt(userid));
         //prefill fullName, phoneNumber and email using the info in the profile page
         //for reservation
+        ReservationModel reservationModel = new ReservationModel();
+
         if (!temp.isEmpty()){
             reservationModel.setFullName(temp.get(0).getFullName());
             reservationModel.setPhoneNumber(temp.get(0).getPhone());
+            System.out.println(temp.get(0).getPhone() + "  " + temp.get(0).getEmail());
             reservationModel.setEmail(temp.get(0).getEmail());
         }
+
+        model.addAttribute("reservationModel", reservationModel);
 
 
 
@@ -128,6 +131,7 @@ public class ReservationController {
         newReservationEntity.setTime(reservationModel.getTime());
         // newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
         newReservationEntity.setUserId(Integer.parseInt(userid));
+
         
 
         //  HolidayEntity he=holidayRepository.findByDate(reservationModel.getDate());
