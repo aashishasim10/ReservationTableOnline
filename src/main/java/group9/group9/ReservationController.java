@@ -95,9 +95,7 @@ public class ReservationController {
         if (reservationModel.getFullName() == "" || 
             reservationModel.getFullName().length() > 50 ||
             !isNumber(reservationModel.getPhoneNumber()) ||
-            !isValidEmailAddress(reservationModel.getEmail()) ||
-            !isNumber(reservationModel.getNumOfGuests()) ||
-            (isNumber(reservationModel.getNumOfGuests()) && !(Integer.parseInt(reservationModel.getNumOfGuests()) > 0)))
+            !isValidEmailAddress(reservationModel.getEmail()))
         {
             model.addAttribute("validationError", "You have entered invalid parameter. Please try again.");
 
