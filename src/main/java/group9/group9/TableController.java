@@ -218,7 +218,12 @@ public String combineTable( @RequestParam(name="num")String num, Model map,HttpS
         map.addAttribute("list", tableList);
       return "displayAvailableTable";
      }
-
+      
+     if(ng>8 && ng<1){
+        List<TableEntity> tableList= tableRepository.findByIsReserved(false);
+        map.addAttribute("list", tableList);
+      return "displayAvailableTable"; 
+     }
 
 
 
