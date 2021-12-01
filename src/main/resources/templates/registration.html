@@ -7,8 +7,9 @@
 
 </head>
 <body>
+    <center>
     <form action="#" th:action="@{/registration}" th:object="${registrationModel}" method="post">
-        <h>Registration</h><br>
+        <h1>Registration</h1><br><hr><br>
         <label>User name:</label><br>
         <input type="text" amxlength="50" th:field="*{username}" required="required" /><br>
         <label>Password:</label><br>
@@ -16,5 +17,6 @@
 
         <input type="submit" value="Register" />
     </form>
+</center>
 </body>
 </html>
