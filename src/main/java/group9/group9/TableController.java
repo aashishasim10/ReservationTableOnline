@@ -82,9 +82,9 @@ public String displayAvailableTable(ModelMap model){
 }
 
 @RequestMapping("/selectTable")
-public String selectTable(@RequestParam(name="tid")int tid,Model model){
-    //int id=Integer.parseInt(tid);
-    TableEntity tableList= tableRepository.findById(tid).get();
+public String selectTable(@RequestParam(name="tid")String tid,Model model){
+    int id=Integer.parseInt(tid);
+    TableEntity tableList= tableRepository.findById(id).get();
     
     tableList.setReserved(true);
     tableRepository.save(tableList);
@@ -162,18 +162,6 @@ table2.setReserved(true);
 tableRepository.save(table2);
 
 /////I want use user Id And User_Info ID\
-/*
- private Integer id;
-    private Integer userid;
-    private String fullName;
-    private String phoneNumber;
-    private String email;
-    private String date;
-    private String time;
-    private int numOfGuests;
-    private boolean isHoliday;
-
-*/
 
 
 return "reservationHistory";
