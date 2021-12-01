@@ -27,7 +27,7 @@
           <td th:text="${list.getTable_id()}" ></td>
           <td th:text="${list.getCapacity()}"></td>
           <td th:text="${list.isReserved()}"></td>
-          <td > <a th:href="@{selectTable?tid=${list.getTable_id()}}">Select</a> </td>
+          <td ><button><a href="#" th:href="@{/selectTable(tid=${list.getTable_id()})}"   >Select</a></button> </td>
       </tr>
 
 
@@ -41,7 +41,7 @@
 
   <form  action="/combineTable" method="post" >
   <label>Number Of Guest</label>
-  <input type="text" name="num"/> 
+  <input type="text" name="num" placeholder="Maximum 8 Guest"/> 
 
   <input type="submit" value="Combine"/>
   </form>

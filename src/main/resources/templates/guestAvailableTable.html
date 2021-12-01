@@ -19,7 +19,6 @@
          <th scope="col">Table Capacity---</th>
          <th scope="col">Is Table Reserved---</th>
          
-         <th scope="col">Pick Table</th>
          
         </thead><br>
 
@@ -27,7 +26,7 @@
           <td th:text="${list.getTable_id()}" ></td>
           <td th:text="${list.getCapacity()}"></td>
           <td th:text="${list.isReserved()}"></td>
-          <td ><button><a href="#" th:href="@{/selectTable(tid=${list.getTable_id()})}"   >Select</a></button> </td>
+          
       </tr>
 
 
@@ -39,12 +38,7 @@
 <center>
 <pre>
 
-  <form  action="/combineTable" method="post" >
-  <label>Number Of Guest</label>
-  <input type="text" name="num" placeholder="Maximum 8 Guest"/> 
-
-  <input type="submit" value="Combine"/>
-  </form>
+    <td ><button><a href="registration"   >Reserve Table</a></button> </td>
 
 
 </pre>

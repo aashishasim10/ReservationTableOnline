@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
@@ -19,6 +20,9 @@ public class LoginController {
 
     @Autowired 
     TableController tableController;
+
+    @Autowired
+    TableRepository tableRepository;
 
     @GetMapping("/login")
 	public String login(Model model) {
@@ -58,6 +62,16 @@ public class LoginController {
 
         return "redirect:/reservationhistory";
     }
+
+    @RequestMapping("/continueGuest")
+    public String showTable(Model model){
+        List<TableEntity> list=tableRepository.findByIsReserved(false);
+      model.addAttribute("list", list);
+        return "guestAvailableTable";
+    }
+
+
+    
 
 }
 

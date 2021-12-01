@@ -13,6 +13,8 @@ public class ReservationEntity {
     private Integer id;
     private Integer userid;
     
+
+    private Integer tableId;
     private String fullName;
     private String phoneNumber;
     private String email;
@@ -22,6 +24,12 @@ public class ReservationEntity {
     private boolean isHoliday;
 
 
+    public Integer getTableId() {
+        return tableId;
+    }
+    public void setTableId(Integer tableId) {
+        this.tableId = tableId;
+    }
     public Integer getId(){
         return id;
     }

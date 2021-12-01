@@ -35,8 +35,6 @@ public class ReservationController {
     @GetMapping("/reservation")
 	public String reservation(Model model, HttpServletRequest request) {
         
-        ReservationModel reservationModel = new ReservationModel();
-        model.addAttribute("reservationModel", reservationModel);
         model.addAttribute("validationError", ""); //nothing for the time being
 
         //time restrictions for the past
@@ -47,6 +45,7 @@ public class ReservationController {
 
         Cookie cookie1[] = request.getCookies();
         String userid="";
+
         for(int i=0; i<cookie1.length; i++) {
             userid = cookie1[i].getValue();
             try{
@@ -65,11 +64,16 @@ public class ReservationController {
         List<UserInfoEntity> temp = userInfoRepository.findByUserid(Integer.parseInt(userid));
         //prefill fullName, phoneNumber and email using the info in the profile page
         //for reservation
+        ReservationModel reservationModel = new ReservationModel();
+
         if (!temp.isEmpty()){
             reservationModel.setFullName(temp.get(0).getFullName());
             reservationModel.setPhoneNumber(temp.get(0).getPhone());
+            System.out.println(temp.get(0).getPhone() + "  " + temp.get(0).getEmail());
             reservationModel.setEmail(temp.get(0).getEmail());
         }
+
+        model.addAttribute("reservationModel", reservationModel);
 
 
 
@@ -85,16 +89,14 @@ public class ReservationController {
 
  
     @RequestMapping(value = "/reservation", method = RequestMethod.POST, params = "showAvailableTables")
-    public String showAvaliableTables(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
+    public String showAvailableTables(Model model, @ModelAttribute ReservationModel reservationModel, HttpServletRequest request) {
         
         /* input validation for reservation variable go here */
         //also check for table availability
         if (reservationModel.getFullName() == "" || 
             reservationModel.getFullName().length() > 50 ||
             !isNumber(reservationModel.getPhoneNumber()) ||
-            !isValidEmailAddress(reservationModel.getEmail()) ||
-            !isNumber(reservationModel.getNumOfGuests()) ||
-            (isNumber(reservationModel.getNumOfGuests()) && !(Integer.parseInt(reservationModel.getNumOfGuests()) > 0)))
+            !isValidEmailAddress(reservationModel.getEmail()))
         {
             model.addAttribute("validationError", "You have entered invalid parameter. Please try again.");
 
@@ -126,8 +128,9 @@ public class ReservationController {
         newReservationEntity.setEmail(reservationModel.getEmail());
         newReservationEntity.setDate(reservationModel.getDate());
         newReservationEntity.setTime(reservationModel.getTime());
-        newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
+        // newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
         newReservationEntity.setUserId(Integer.parseInt(userid));
+
         
 
         //  HolidayEntity he=holidayRepository.findByDate(reservationModel.getDate());
@@ -136,7 +139,8 @@ public class ReservationController {
         //     newReservationEntity.setHoliday(true);
         //     reservationRepository.save(newReservationEntity);
         //     return "payment";
-        //  }
+         //}
+        // 
 
         // newReservationEntity.setHoliday(false);
         reservationRepository.save(newReservationEntity);
