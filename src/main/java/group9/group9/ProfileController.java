@@ -84,7 +84,10 @@ public class ProfileController {
             temp.getState().length() != 2 ||
             temp.getFullName() == "" || 
             temp.getFullName().length() > 50 ||
-            temp.getPhone().length() != 10)
+            !isNumber(temp.getPhone()) ||
+            temp.getPhone().length() > 10 ||
+            temp.getPhone().length() <= 9 ||
+            temp.getEmail() == "")
         {
             return "redirect:/profile";
         }
@@ -126,6 +129,8 @@ public class ProfileController {
             UserInfoEntity newUserInfo = new UserInfoEntity();
 
             newUserInfo.setFullName(temp.getFullName());
+            newUserInfo.setEmail(temp.getEmail());
+            newUserInfo.setPhone(temp.getPhone());
             newUserInfo.setAddress1(temp.getAddress1());
             newUserInfo.setAddress2(temp.getAddress2());
             newUserInfo.setCity(temp.getCity());
