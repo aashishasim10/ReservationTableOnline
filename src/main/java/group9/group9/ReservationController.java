@@ -62,6 +62,17 @@ public class ReservationController {
             }
         }
 
+        List<UserInfoEntity> temp = userInfoRepository.findByUserid(Integer.parseInt(userid));
+        //prefill fullName, phoneNumber and email using the info in the profile page
+        //for reservation
+        if (!temp.isEmpty()){
+            reservationModel.setFullName(temp.get(0).getFullName());
+            reservationModel.setPhoneNumber(temp.get(0).getPhone());
+            reservationModel.setEmail(temp.get(0).getEmail());
+        }
+
+
+
         // List<UserInfoEntity> userInfoEntity = userInfoRepository.findByUserid(Integer.parseInt(userid));
 
         // if (userInfoEntity.isEmpty()) {
