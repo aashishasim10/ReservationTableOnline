@@ -126,7 +126,7 @@ public class ReservationController {
         newReservationEntity.setEmail(reservationModel.getEmail());
         newReservationEntity.setDate(reservationModel.getDate());
         newReservationEntity.setTime(reservationModel.getTime());
-        newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
+        // newReservationEntity.setNumOfGuests(Integer.parseInt(reservationModel.getNumOfGuests()));
         newReservationEntity.setUserId(Integer.parseInt(userid));
         
 

@@ -23,10 +23,8 @@ pricing module which will not be implemented in assignment 2.
         <input type="date" th:field="*{date}" th:attr="min=${now}" required="required" /><br>
         <label>Enter your reservation time:</label><br>
         <input type="time" th:field="*{time}" required="required" /><br>
-        <label>Enter the number of guests:</label><br>
-        <input type="number" th:field="*{numOfGuests}" required="required" /><br>
 
-        <input type="submit" name="showAvailableTables" value="Check Availability " />
+        <input type="submit" name="showAvailableTables" value="Show Available Tables" />
       </form>
 
       <a href="/profile"><button>Edit Profile</button></a>
