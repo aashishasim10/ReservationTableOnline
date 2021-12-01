@@ -45,6 +45,7 @@ public class ReservationController {
 
         Cookie cookie1[] = request.getCookies();
         String userid="";
+        
         for(int i=0; i<cookie1.length; i++) {
             userid = cookie1[i].getValue();
             try{
