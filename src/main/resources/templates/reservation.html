@@ -7,7 +7,9 @@ deliveryDate. After they click submit, suggestedPrice and totalAmountDue will be
 pricing module which will not be implemented in assignment 2.
 -->
 <html xmlns:th="http://www.thymeleaf.org/%22%3E"></html>
-    <body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <body><center>
       <h2> Make a reservation here!</h2>
 
       <div th:text="${validationError}"></div>
@@ -26,13 +28,13 @@ pricing module which will not be implemented in assignment 2.
 
         <input type="submit" name="showAvailableTables" value="Show Available Tables" />
       </form>
-
-      <a href="/profile"><button>Edit Profile</button></a>
-      <a href="/reservationhistory"><button>See Reservation History</button></a>
+       <br>
+      <a href="/profile"><button>Edit Profile</button></a><br>
+      <a href="/reservationhistory"><button>See Reservation History</button></a><br>
 
       
-      <a href="/combine"><button>Combine</button></a>
       
+    </center>
     </body>
 
 </html>

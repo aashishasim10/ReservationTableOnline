@@ -45,7 +45,7 @@ public class ReservationController {
 
         Cookie cookie1[] = request.getCookies();
         String userid="";
-        
+
         for(int i=0; i<cookie1.length; i++) {
             userid = cookie1[i].getValue();
             try{
@@ -139,7 +139,8 @@ public class ReservationController {
         //     newReservationEntity.setHoliday(true);
         //     reservationRepository.save(newReservationEntity);
         //     return "payment";
-        //  }
+         //}
+        // 
 
         // newReservationEntity.setHoliday(false);
         reservationRepository.save(newReservationEntity);

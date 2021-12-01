@@ -23,7 +23,7 @@ import javax.servlet.http.*;
 
 @Controller
 public class TableController {
-  
+     boolean checkHoliday=false;
   @Autowired
   TableRepository tableRepository;  
 
@@ -114,11 +114,42 @@ public String selectTable(@RequestParam(name="tid")String tid,Model model,HttpSe
     }
     
     List<ReservationEntity> usersReservation = reservationRepository.findByUserid(Integer.parseInt(userid));
+  ///checking is holiday or not
+
+
+  
+
     String date = usersReservation.get(0).getDate();
+    System.out.println("Date zis ======= "+date+"     -----\n\n\n\n\n\n\n");
+
+///
+     HolidayEntity he=holidayRepository.findByDate(date);
+         boolean flag=he.isHoliday();
+
+      if(checkHoliday==false){
+         System.out.println(flag);
+         if(flag==true){
+             ReservationEntity re= new ReservationEntity();
+            re.setHoliday(true);
+            reservationRepository.save(re);
+            checkHoliday=true;
+            model.addAttribute("tid",id);
+            return "payment";
+        }
+
+    }
+///
+    ///checking is holiday or not
+    //HolidayEntity holi=holidayRepository.findByDate(date);
+
+  
+
     String time = usersReservation.get(0).getTime();
     String email=usersReservation.get(0).getEmail();
     String fname=usersReservation.get(0).getFullName();
     String phone=usersReservation.get(0).getPhoneNumber();
+      
+
     
 
     //System.out.println("Date And Time =="+ date+"     " +time+"\n");
@@ -262,6 +293,7 @@ else{// guest ===4
 
 }
 else{
+
     return "displayAvailableTable";  
 }
 System.out.println("List if Table Id Is --");
@@ -300,8 +332,23 @@ int tableNo2=listTid.get(1);
     String fname=usersReservation.get(0).getFullName();
     String phone=usersReservation.get(0).getPhoneNumber();
 
-   
+    HolidayEntity he=holidayRepository.findByDate(date);
+    boolean flag=he.isHoliday();
 
+
+//////////checking holiday ///////////////////
+ if(checkHoliday==false){
+    System.out.println(flag);
+    if(flag==true){
+        ReservationEntity re= new ReservationEntity();
+       re.setHoliday(true);
+       reservationRepository.save(re);
+       checkHoliday=true;
+       map.addAttribute("tid",table1Guest);
+       return "payment";
+   }
+}
+////////////////////////////////////////
 
     ReservationEntity reservationEntity= new ReservationEntity();
     //HolidayEntity he=holidayRepository.findByDate(date);
@@ -368,7 +415,13 @@ List<ReservationEntity> list=reservationRepository.findByUserid(ui);
 
 
 return "reservationHistory";
+
+
 }
+
+
+
+
 
 
 

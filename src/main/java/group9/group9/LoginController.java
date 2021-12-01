@@ -70,5 +70,8 @@ public class LoginController {
         return "guestAvailableTable";
     }
 
+
+    
+
 }
 
