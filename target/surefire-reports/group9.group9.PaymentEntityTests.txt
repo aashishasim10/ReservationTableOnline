@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: group9.group9.PaymentEntityTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! - in group9.group9.PaymentEntityTests
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! - in group9.group9.PaymentEntityTests
 gettersAndSettersWork  Time elapsed: 0 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <0000 0000 0000 00000> but was: <0000 0000 0000 0000>
 	at group9.group9.PaymentEntityTests.gettersAndSettersWork(PaymentEntityTests.java:23)
