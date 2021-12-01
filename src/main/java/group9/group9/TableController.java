@@ -29,6 +29,10 @@ public class TableController {
 
   @Autowired
   ReservationRepository reservationRepository; 
+
+  @Autowired
+  HolidayRepository holidayRepository; 
+  
   
 // this method will direst to addTable html Page
 @GetMapping("/displayAvailableTable")
@@ -78,7 +82,7 @@ return "addTable";
 public String displayAvailableTable(ModelMap model){
     List<TableEntity> tableList= tableRepository.findAll();
 
-  model.addAttribute("list", tableList);
+     model.addAttribute("list", tableList);
     return "displayAvailableTable";
 
     
@@ -88,7 +92,7 @@ public String displayAvailableTable(ModelMap model){
 public String selectTable(@RequestParam(name="tid")String tid,Model model,HttpServletRequest request){
     int id=Integer.parseInt(tid);
     TableEntity tableList= tableRepository.findById(id).get();
-
+  System.out.println("Table id IS ---"+ id +"\n\n\n\n");
     //ReservationEntity reservationEntity= new ReservationEntity();
     //reservationEntity.setTableId(id);
    
@@ -112,28 +116,78 @@ public String selectTable(@RequestParam(name="tid")String tid,Model model,HttpSe
     List<ReservationEntity> usersReservation = reservationRepository.findByUserid(Integer.parseInt(userid));
     String date = usersReservation.get(0).getDate();
     String time = usersReservation.get(0).getTime();
-    Integer table_id = usersReservation.get(0).getTableId();
+    String email=usersReservation.get(0).getEmail();
+    String fname=usersReservation.get(0).getFullName();
+    String phone=usersReservation.get(0).getPhoneNumber();
+    
 
-    List<ReservationEntity> conflictChecker = reservationRepository.findByDateAndTableId(date,table_id);
+    //System.out.println("Date And Time =="+ date+"     " +time+"\n");
+    //Integer table_id = usersReservation.get(0).getTableId();
+
+    //List<ReservationEntity> conflictChecker = reservationRepository.findByDateAndTableId(date,table_id);
     // no conflicts, assign table id
-    if(conflictChecker.isEmpty()){
-        usersReservation.get(0).setTableId(id);
-    }
-    else{
-        if(time.substring(0,3).equals(conflictChecker.get(0).getTime().substring(0,3))){//there is a conflict
-            return "displayAvailableTable";
-        }
-        else{//no conflict
-            usersReservation.get(0).setTableId(id);
-        }
-    }
+    ///if(conflictChecker.isEmpty()){
+       // usersReservation.get(0).setTableId(id);
+    //}
+    //else{
+       // if(time.substring(0,3).equals(conflictChecker.get(0).getTime().substring(0,3))){//there is a conflict
+           // List<TableEntity> table= tableRepository.findAll();
+
+             //model.addAttribute("list", table);
+            //return "displayAvailableTable";
+        //}
+        //else{//no conflict
+           // usersReservation.get(0).setTableId(id);
+        //}
+      
+        System.out.println(userid);
+        int userId=Integer.parseInt(userid);
+
+
+        //System.out.println(userId+"User id is =-------");
+        
+        TableEntity tableInfo= tableRepository.findById(id).get();
+           
+        int noOfGuest=tableInfo.getCapacity();
+        tableInfo.setReserved(true);
+        tableRepository.save(tableInfo);
+
+        //System.out.println(tableInfo+" Table Information ------");
 
 
     
-    tableList.setReserved(true);
-    tableRepository.save(tableList);
 
-    model.addAttribute("list", tableList);
+
+    ReservationEntity reservationEntity= new ReservationEntity();
+    //HolidayEntity he=holidayRepository.findByDate(date);
+    //boolean holiday=he.isHoliday();
+    
+    
+    
+    reservationEntity.setDate(date);
+    reservationEntity.setEmail(email);
+    reservationEntity.setFullName(fname);
+    reservationEntity.setNumOfGuests(noOfGuest);
+    reservationEntity.setPhoneNumber(phone);
+    reservationEntity.setTableId(id);
+    
+
+
+    reservationEntity.setTime(time);
+    reservationEntity.setUserId(userId);
+   // tableList.setReserved(true);
+    //tableRepository.save(tableList);
+    reservationRepository.save(reservationEntity);
+     
+    List<ReservationEntity> list=reservationRepository.findByUserid(userId);
+    
+
+    model.addAttribute("list",list );
+    //if(holiday){
+
+      //  return "payment";
+    //}
+
     return "reservationHistory";
 }
 
@@ -154,7 +208,19 @@ public String checkReservation(Model map){
 
 
 @RequestMapping("/combineTable")
-public String combineTable( @RequestParam(name="num")String num, Model map){
+public String combineTable( @RequestParam(name="num")String num, Model map,HttpServletRequest request){
+    ////User an only combine table if the User needed table is not Avialable 
+
+    int ng=Integer.parseInt(num);
+    List<TableEntity> tc =tableRepository.findByCapacityAndIsReserved(ng,false);
+     if(!tc.isEmpty()){
+        List<TableEntity> tableList= tableRepository.findByIsReserved(false);
+        map.addAttribute("list", tableList);
+      return "displayAvailableTable";
+     }
+
+
+
 
     List<Integer> listTid=new ArrayList<>();
 int guest=Integer.parseInt(num);
@@ -197,6 +263,93 @@ System.out.println("List if Table Id Is --");
 System.out.println(listTid);
 map.addAttribute("list", listTid);
 
+int tableNo1=listTid.get(0);
+int tableNo2=listTid.get(1);
+  TableEntity firstTable=tableRepository.findById(tableNo1).get();
+  TableEntity secondTable=tableRepository.findById(tableNo2).get();
+
+  int table1Guest=firstTable.getCapacity();
+  int table2Guest=secondTable.getCapacity();
+
+  Cookie cookie1[] = request.getCookies();
+  String userid="";
+  for(int i=0; i<cookie1.length; i++) {
+      userid = cookie1[i].getValue();
+      try{
+          Integer.parseInt(userid);
+      }
+      catch(NumberFormatException e)
+      {
+          userid=null;
+      }
+      if(userid != null)
+      {
+          break;
+      }
+  }
+
+    List<ReservationEntity> usersReservation = reservationRepository.findByUserid(Integer.parseInt(userid));
+    String date = usersReservation.get(0).getDate();
+    String time = usersReservation.get(0).getTime();
+    String email=usersReservation.get(0).getEmail();
+    String fname=usersReservation.get(0).getFullName();
+    String phone=usersReservation.get(0).getPhoneNumber();
+
+   
+
+
+    ReservationEntity reservationEntity= new ReservationEntity();
+    //HolidayEntity he=holidayRepository.findByDate(date);
+    //boolean holiday=he.isHoliday();
+    
+    
+    int ui=Integer.parseInt(userid);///assign User id
+    reservationEntity.setDate(date);
+    reservationEntity.setEmail(email);
+    reservationEntity.setFullName(fname);
+    reservationEntity.setNumOfGuests(table1Guest);
+    reservationEntity.setPhoneNumber(phone);
+    reservationEntity.setTableId(tableNo1);
+    
+
+
+    reservationEntity.setTime(time);
+    reservationEntity.setUserId(ui);
+   // tableList.setReserved(true);
+    //tableRepository.save(tableList);
+    reservationRepository.save(reservationEntity);
+    ReservationEntity reservation= new ReservationEntity();
+////// second Time 
+    reservation.setDate(date);
+    reservation.setEmail(email);
+    reservation.setFullName(fname);
+    reservation.setNumOfGuests(table2Guest);
+    reservation.setPhoneNumber(phone);
+    reservation.setTableId(tableNo2);
+    
+
+
+    reservation.setTime(time);
+    reservation.setUserId(ui);
+   // tableList.setReserved(true);
+    //tableRepository.save(tableList);
+    reservationRepository.save(reservation);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TableEntity table1=tableRepository.findById(listTid.get(0)).get();
 table1.setReserved(true);
 tableRepository.save(table1);
@@ -204,8 +357,9 @@ tableRepository.save(table1);
 TableEntity table2=tableRepository.findById(listTid.get(1)).get();
 table2.setReserved(true);
 tableRepository.save(table2);
-
-/////I want use user Id And User_Info ID\
+List<ReservationEntity> list=reservationRepository.findByUserid(ui);
+ map.addAttribute("list",list );
+   
 
 
 return "reservationHistory";
