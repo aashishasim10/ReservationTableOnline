@@ -12,7 +12,7 @@ group9,group9.group9,RegistrationController,2,69,1,5,1,16,1,5,0,3
 group9,group9.group9,RegistrationModel,0,17,0,0,0,7,0,5,0,5
 group9,group9.group9,ReservationModel,52,0,0,0,22,0,15,0,15,0
 group9,group9.group9,PasswordEncryption,0,29,0,0,0,8,0,1,0,1
-group9,group9.group9,PaymentEntity,78,3,0,0,20,1,13,1,13,1
+group9,group9.group9,PaymentEntity,0,81,0,0,0,21,0,14,0,14
 group9,group9.group9,UserModel,17,0,0,0,7,0,5,0,5,0
 group9,group9.group9,HolidayEntity,49,3,0,0,13,1,9,1,9,1
 group9,group9.group9,ReservationEntity,65,3,0,0,27,1,18,1,18,1
