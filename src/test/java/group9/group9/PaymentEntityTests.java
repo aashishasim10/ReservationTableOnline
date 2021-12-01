@@ -13,7 +13,7 @@ public class PaymentEntityTests {
         assertThat(entity).isNotNull();
 
         entity.setCardName("group9");
-        entity.setCardNumber("0000 0000 0000 00000");
+        entity.setCardNumber("0000 0000 0000 0000");
         entity.setExpDate("00/00");
         entity.setSecCode("000");
         entity.setPaymentID(10);
@@ -25,7 +25,7 @@ public class PaymentEntityTests {
         assertEquals(entity.getSecCode(), "000");
         assertEquals(entity.getPaymentID(), 10);
         assertEquals(entity.getUserId(), 9);
-        assertEquals(entity.toString(), "PaymentEntity [SecCode=" + "000" + ", cardName=" + "group9" + ", cardNumber=" + "0000 0000 0000 00000" + ", expDate="
+        assertEquals(entity.toString(), "PaymentEntity [SecCode=" + "000" + ", cardName=" + "group9" + ", cardNumber=" + "0000 0000 0000 0000" + ", expDate="
         + "00/00" + ", paymentID=" + 10 + ", userid=" + 9 + "]");
     }
 }
