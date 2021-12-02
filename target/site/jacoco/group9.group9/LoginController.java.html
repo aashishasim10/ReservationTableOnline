@@ -11,53 +11,67 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-<span class="fc" id="L16">public class LoginController {</span>
+<span class="fc" id="L17">public class LoginController {</span>
     @Autowired
     private UserRepository userRepository;
 
     @Autowired 
     TableController tableController;
 
+    @Autowired
+    TableRepository tableRepository;
+
     @GetMapping(&quot;/login&quot;)
 	public String login(Model model) {
-<span class="nc" id="L25">        LoginModel loginModel = new LoginModel();</span>
-<span class="nc" id="L26">        model.addAttribute(&quot;loginModel&quot;, loginModel);</span>
+<span class="nc" id="L29">        LoginModel loginModel = new LoginModel();</span>
+<span class="nc" id="L30">        model.addAttribute(&quot;loginModel&quot;, loginModel);</span>
         
         //tableController.combineTable(6);
         
-<span class="nc" id="L30">        return &quot;login&quot;;</span>
+<span class="nc" id="L34">        return &quot;login&quot;;</span>
 	}
 
     @PostMapping(&quot;/login&quot;)
     public String loginSubmit(@ModelAttribute LoginModel loginModel, HttpServletResponse response) {
 
-<span class="nc" id="L36">       List&lt; UserEntity&gt; users = userRepository.findByUsername(loginModel.getUsername());</span>
+<span class="nc" id="L40">       List&lt; UserEntity&gt; users = userRepository.findByUsername(loginModel.getUsername());</span>
 
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (users.isEmpty()) {</span>
-<span class="nc" id="L39">            return &quot;redirect:/login&quot;;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (users.isEmpty()) {</span>
+<span class="nc" id="L43">            return &quot;redirect:/login&quot;;</span>
         }
         
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(users.get(0).isAdmin()==true){</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if(users.get(0).isAdmin()==true){</span>
 
-<span class="nc" id="L44">            return &quot;addTable&quot;;</span>
+<span class="nc" id="L48">            return &quot;addTable&quot;;</span>
         }
 
         
-<span class="nc" id="L48">        UserEntity user = users.get(0);</span>
+<span class="nc" id="L52">        UserEntity user = users.get(0);</span>
 
-<span class="nc" id="L50">        String hash = PasswordEncryption.hash(loginModel.getPassword());</span>
+<span class="nc" id="L54">        String hash = PasswordEncryption.hash(loginModel.getPassword());</span>
 
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (!user.getPassword().equals(hash)) {</span>
-<span class="nc" id="L53">            return &quot;redirect:/login&quot;;</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (!user.getPassword().equals(hash)) {</span>
+<span class="nc" id="L57">            return &quot;redirect:/login&quot;;</span>
         }
 
-<span class="nc" id="L56">        Cookie cookie = new Cookie(&quot;user-id&quot;, user.getId().toString());</span>
-<span class="nc" id="L57">        response.addCookie(cookie);</span>
+<span class="nc" id="L60">        Cookie cookie = new Cookie(&quot;user-id&quot;, user.getId().toString());</span>
+<span class="nc" id="L61">        response.addCookie(cookie);</span>
 
-<span class="nc" id="L59">        return &quot;redirect:/reservationhistory&quot;;</span>
+<span class="nc" id="L63">        return &quot;redirect:/reservationhistory&quot;;</span>
     }
+
+    @RequestMapping(&quot;/continueGuest&quot;)
+    public String showTable(Model model){
+<span class="nc" id="L68">        List&lt;TableEntity&gt; list=tableRepository.findByIsReserved(false);</span>
+<span class="nc" id="L69">      model.addAttribute(&quot;list&quot;, list);</span>
+<span class="nc" id="L70">        return &quot;guestAvailableTable&quot;;</span>
+    }
+
+
+    
 
 }
 

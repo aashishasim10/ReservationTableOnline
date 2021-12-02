@@ -13,6 +13,7 @@ public class ReservationEntityTests {
 
         assertThat(entity).isNotNull();
 
+        entity.setTableId(2);
         entity.setFullName("group9");
         entity.setPhoneNumber("0000000000");
         entity.setEmail("group9@gmail.com");
@@ -23,6 +24,7 @@ public class ReservationEntityTests {
         entity.setId(10);
         entity.setUserId(9);
 
+        assertEquals(entity.getTableId(), 2);
         assertEquals(entity.getFullName(), "group9");
         assertEquals(entity.getPhoneNumber(), "0000000000");
         assertEquals(entity.getEmail(), "group9@gmail.com");
